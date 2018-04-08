@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<!-- saved from url=(0042)http://localhost/unishop/cp_admin/category -->
+<html class=" sidebar-large js flexbox canvas canvastext webgl no-touch geolocation postmessage websqldatabase indexeddb hashchange history draganddrop websockets rgba hsla multiplebgs backgroundsize borderimage borderradius boxshadow textshadow opacity cssanimations csscolumns cssgradients cssreflections csstransforms csstransforms3d csstransitions fontface no-generatedcontent video audio localstorage sessionstorage webworkers applicationcache svg inlinesvg smil svgclippaths no-retina" style=""><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+   <!-- BEGIN META SECTION -->
+    <!--<base href="http://localhost/unishop/">--><base href=".">
+    
+     <title>Unishop-Danh mục Sản phẩm</title>
+ <meta content="" name="description">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta content="themes-lab" name="author"> 
+    <link rel="shortcut icon" href="http://localhost/unishop/assets/img/favicon.png">
+    
+    <!-- END META SECTION -->
+    <!-- BEGIN MANDATORY STYLE -->
+    <link href="./Unishop-Danh mục Sản phẩm_files/icons.min.css" rel="stylesheet">
+    <link href="./Unishop-Danh mục Sản phẩm_files/bootstrap.min.css" rel="stylesheet">
+    <link href="./Unishop-Danh mục Sản phẩm_files/plugins.css" rel="stylesheet">
+    <link href="./Unishop-Danh mục Sản phẩm_files/style.min.css" rel="stylesheet">
+    <!-- END  MANDATORY STYLE -->
+    <!-- BEGIN PAGE LEVEL STYLE -->
+    <link href="./Unishop-Danh mục Sản phẩm_files/fullcalendar.css" rel="stylesheet">
+    <link href="./Unishop-Danh mục Sản phẩm_files/metrojs.css" rel="stylesheet">
+    <link href="./Unishop-Danh mục Sản phẩm_files/css" rel="stylesheet">
+    <!-- END PAGE LEVEL STYLE -->
+    <script src="./Unishop-Danh mục Sản phẩm_files/modernizr-2.6.2-respond-1.1.0.min.js.download"></script>   <meta name="csrf-token" content="yOk4C6bbfRtghsXwe1nvPYDx5cKk5e2ILNiFB0Vb">
+</head>
+ 
+<body data-page="ecommerce_dashboard" class="">
+    <!-- BEGIN TOP MENU -->
+     <!-- BEGIN TOP MENU -->
+    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="http://localhost/unishop/index.html"></a>
+            </div>
+            <div class="navbar-center">Trang quản trị</div>
+            <div class="navbar-collapse collapse">
+                <!-- BEGIN TOP NAVIGATION MENU -->
+                <ul class="nav navbar-nav pull-right header-menu">
+                    <!-- BEGIN USER DROPDOWN -->
+                    <li class="dropdown" id="user-header">
+                        <a href="http://localhost/unishop/#" class="dropdown-toggle c-white" data-toggle="dropdown" data-hover="dropdown" data-close-others="true" data-original-title="" title="">
+                            <img src="./Unishop-Danh mục Sản phẩm_files/avatar2.png" alt="user avatar" width="30" class="p-r-5">
+                            <span class="username">Thân Thế Văn</span>
+                            <i class="fa fa-angle-down p-r-10"></i>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a href="http://localhost/unishop/profil.html">
+                                    <i class="glyph-icon flaticon-account"></i> Thông tin
+                                </a>
+                            </li>
+                            <li>
+                                <a href="http://localhost/unishop/profil_edit.html">
+                                    <i class="glyph-icon flaticon-settings21"></i> Thiết lập
+                                </a>
+                            </li>
+                            <li class="dropdown-footer clearfix" style="text-align:center;">
+                                <a href="http://localhost/unishop/login.html" title="Đăng xuất">
+                                    <i class="fa fa-power-off"></i>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <!-- END USER DROPDOWN -->
+
+                </ul>
+                <!-- END TOP NAVIGATION MENU -->
+            </div>
+        </div>
+    </nav>
+    <!-- END TOP MENU -->
+    <!-- BEGIN WRAPPER -->
+    <div id="wrapper">
+        <!-- BEGIN MAIN SIDEBAR -->
+        <nav id="sidebar">
+            <div id="main-menu">
+                <ul class="sidebar-nav">
+                    <li class="">
+                        <a href="http://localhost/unishop/cp_admin">
+                            <i class="fa fa-dashboard"></i>
+                            <span class="sidebar-text">Trang chủ</span>
+                        </a>
+                    </li>
+                    <li class="current active">
+                        <a href="http://localhost/unishop/#">
+                            <i class="glyph-icon flaticon-shopping80"></i>
+                            <span class="sidebar-text">Sản phẩm</span>
+                            <span class="fa arrow"></span>
+                        </a>
+                        <ul class="submenu collapse in">
+                            <li>
+                                <a href="http://localhost/unishop/cp_admin/category">
+                                    <span class="sidebar-text">Danh mục sản phẩm</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="http://localhost/unishop/cp_admin/product">
+                                    <span class="sidebar-text">Sản phẩm</span>
+                                </a>
+                        </li></ul>
+                        </li>
+                        <li class="">
+                            <a href="http://localhost/unishop/cp_admin/order">
+                                <i class="fa fa-pencil-square"></i>
+                                <span class="sidebar-text">Hóa đơn</span>
+                            </a>
+                        </li>
+                        <li class="">
+                            <a href="http://localhost/unishop/#">
+                                <i class="fa fa-edit"></i>
+                                <span class="sidebar-text">Tin tức</span>
+                                <span class="fa arrow"></span>
+                            </a>
+                            <ul class="submenu collapse">
+                                <li>
+                                    <a href="http://localhost/unishop/cp_admin/categorypost">
+                                        <span class="sidebar-text">Danh mục bài viết</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="http://localhost/unishop/cp_admin/post">
+                                        <span class="sidebar-text">Bài viết</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+
+                        <li class="">
+                            <a href="http://localhost/unishop/#">
+                                <i class="glyph-icon flaticon-email"></i>
+                                <span class="sidebar-text">Phản hồi</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="http://localhost/unishop/">
+                                <i class="glyph-icon flaticon-account"></i>
+                                <span class="sidebar-text">Người dùng</span>
+                                <span class="fa arrow"></span>
+                            </a>
+                            <ul class="submenu collapse">
+                                <li>
+                                    <a href="http://localhost/unishop/profil.html">
+                                        <span class="sidebar-text">Nhân viên</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="http://localhost/unishop/profil_edit.html">
+                                        <span class="sidebar-text">Khách hàng</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="http://localhost/unishop/charts.html">
+                                <i class="glyph-icon flaticon-charts2"></i>
+                                <span class="sidebar-text">Thống kê</span>
+                            </a>
+                        </li>
+                        <li>
+                                <a href="http://localhost/unishop/#">
+                                    <i class="glyph-icon flaticon-gallery"></i>
+                                    <span class="sidebar-text">Hình ảnh</span>
+                                    <span class="fa arrow"></span>
+                                </a>
+                                <ul class="submenu collapse">
+                                    <li>
+                                        <a href="http://localhost/unishop/gallery.html">
+                                            <span class="sidebar-text">Slider</span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="http://localhost/unishop/medias.html">
+                                            <span class="sidebar-text">Medias</span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="http://localhost/unishop/image_croping.html">
+                                            <span class="sidebar-text">Image Croping</span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+                </ul>
+            </div>
+
+        </nav>        <!-- END MAIN SIDEBAR -->
+         
+        <!-- BEGIN MAIN CONTENT -->
+         <div id="main-content">
+            <div class="m-b-20 clearfix">
+                <div class="page-title pull-left">
+                    <h3 class="pull-left"><strong>Danh mục sản phẩm</strong></h3>
+                </div>
+                 <div class="pull-right" style="margin-right: 5px;">
+                    <a data-toggle="modal" href="http://localhost/unishop/#modal-id" class="btn btn-success m-t-10"><i class="fa fa-plus p-r-10"></i>Thêm mới</a>
+                </div>
+                
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="panel panel-default">
+                        <div class="panel-body">
+                            <div class="row">
+                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 table-responsive">
+									<table class="table table-tools table-hover">
+										<thead>
+											<tr>
+												<th style="min-width:70px"><strong>ID</strong>
+												</th><th>Tên danh mục</th>
+												<th>Hoạt động</th>
+											</tr>
+										</thead>
+										<tbody>
+											<tr><td><strong>1</strong></td><td><strong style="color:black;font-weight: bold;font-size:18px">Nam</strong></td><td class="list_td aligncenter">
+		            <button title="Sửa" class="edit btn btn-sm btn-warning" data-name="Nam" data-id="1" data-parent-id="0"><i class="fa fa-pencil"></i> Sửa</button>&nbsp;&nbsp;&nbsp;
+		            <button title="Xóa" onclick="return confirm(&#39;Xóa danh mục này ?&#39;); " class="delete btn btn-sm btn-danger"><i class="fa fa-times-circle"></i> Xóa</button>
+			      </td>
+			    </tr><tr><td><strong>4</strong></td><td style="color:black;font-weight: bold">--Áo len</td><td class="list_td aligncenter">
+		            <button title="Sửa" class="edit btn btn-sm btn-warning" data-name="Áo len" data-id="4" data-parent-id="1"><i class="fa fa-pencil"></i> Sửa</button>&nbsp;&nbsp;&nbsp;
+		            <button title="Xóa" onclick="return confirm(&#39;Xóa danh mục này ?&#39;); " class="delete btn btn-sm btn-danger"><i class="fa fa-times-circle"></i> Xóa</button>
+			      </td>
+			    </tr><tr><td><strong>5</strong></td><td style="color:black;font-weight: bold">--Áo khoác</td><td class="list_td aligncenter">
+		            <button title="Sửa" class="edit btn btn-sm btn-warning" data-name="Áo khoác" data-id="5" data-parent-id="1"><i class="fa fa-pencil"></i> Sửa</button>&nbsp;&nbsp;&nbsp;
+		            <button title="Xóa" onclick="return confirm(&#39;Xóa danh mục này ?&#39;); " class="delete btn btn-sm btn-danger"><i class="fa fa-times-circle"></i> Xóa</button>
+			      </td>
+			    </tr><tr><td><strong>6</strong></td><td style="color:black;font-weight: bold">--Áo sơ mi</td><td class="list_td aligncenter">
+		            <button title="Sửa" class="edit btn btn-sm btn-warning" data-name="Áo sơ mi" data-id="6" data-parent-id="1"><i class="fa fa-pencil"></i> Sửa</button>&nbsp;&nbsp;&nbsp;
+		            <button title="Xóa" onclick="return confirm(&#39;Xóa danh mục này ?&#39;); " class="delete btn btn-sm btn-danger"><i class="fa fa-times-circle"></i> Xóa</button>
+			      </td>
+			    </tr><tr><td><strong>7</strong></td><td style="color:black;font-weight: bold">--Quần jeans</td><td class="list_td aligncenter">
+		            <button title="Sửa" class="edit btn btn-sm btn-warning" data-name="Quần jeans" data-id="7" data-parent-id="1"><i class="fa fa-pencil"></i> Sửa</button>&nbsp;&nbsp;&nbsp;
+		            <button title="Xóa" onclick="return confirm(&#39;Xóa danh mục này ?&#39;); " class="delete btn btn-sm btn-danger"><i class="fa fa-times-circle"></i> Xóa</button>
+			      </td>
+			    </tr><tr><td><strong>8</strong></td><td style="color:black;font-weight: bold">--Quần kaki</td><td class="list_td aligncenter">
+		            <button title="Sửa" class="edit btn btn-sm btn-warning" data-name="Quần kaki" data-id="8" data-parent-id="1"><i class="fa fa-pencil"></i> Sửa</button>&nbsp;&nbsp;&nbsp;
+		            <button title="Xóa" onclick="return confirm(&#39;Xóa danh mục này ?&#39;); " class="delete btn btn-sm btn-danger"><i class="fa fa-times-circle"></i> Xóa</button>
+			      </td>
+			    </tr><tr><td><strong>2</strong></td><td><strong style="color:black;font-weight: bold;font-size:18px">Nữ</strong></td><td class="list_td aligncenter">
+		            <button title="Sửa" class="edit btn btn-sm btn-warning" data-name="Nữ" data-id="2" data-parent-id="0"><i class="fa fa-pencil"></i> Sửa</button>&nbsp;&nbsp;&nbsp;
+		            <button title="Xóa" onclick="return confirm(&#39;Xóa danh mục này ?&#39;); " class="delete btn btn-sm btn-danger"><i class="fa fa-times-circle"></i> Xóa</button>
+			      </td>
+			    </tr><tr><td><strong>9</strong></td><td style="color:black;font-weight: bold">--Áo len</td><td class="list_td aligncenter">
+		            <button title="Sửa" class="edit btn btn-sm btn-warning" data-name="Áo len" data-id="9" data-parent-id="2"><i class="fa fa-pencil"></i> Sửa</button>&nbsp;&nbsp;&nbsp;
+		            <button title="Xóa" onclick="return confirm(&#39;Xóa danh mục này ?&#39;); " class="delete btn btn-sm btn-danger"><i class="fa fa-times-circle"></i> Xóa</button>
+			      </td>
+			    </tr><tr><td><strong>10</strong></td><td style="color:black;font-weight: bold">--Áo khoác</td><td class="list_td aligncenter">
+		            <button title="Sửa" class="edit btn btn-sm btn-warning" data-name="Áo khoác" data-id="10" data-parent-id="2"><i class="fa fa-pencil"></i> Sửa</button>&nbsp;&nbsp;&nbsp;
+		            <button title="Xóa" onclick="return confirm(&#39;Xóa danh mục này ?&#39;); " class="delete btn btn-sm btn-danger"><i class="fa fa-times-circle"></i> Xóa</button>
+			      </td>
+			    </tr><tr><td><strong>11</strong></td><td style="color:black;font-weight: bold">--Quần jeans</td><td class="list_td aligncenter">
+		            <button title="Sửa" class="edit btn btn-sm btn-warning" data-name="Quần jeans" data-id="11" data-parent-id="2"><i class="fa fa-pencil"></i> Sửa</button>&nbsp;&nbsp;&nbsp;
+		            <button title="Xóa" onclick="return confirm(&#39;Xóa danh mục này ?&#39;); " class="delete btn btn-sm btn-danger"><i class="fa fa-times-circle"></i> Xóa</button>
+			      </td>
+			    </tr><tr><td><strong>12</strong></td><td style="color:black;font-weight: bold">--Đồ công sở</td><td class="list_td aligncenter">
+		            <button title="Sửa" class="edit btn btn-sm btn-warning" data-name="Đồ công sở" data-id="12" data-parent-id="2"><i class="fa fa-pencil"></i> Sửa</button>&nbsp;&nbsp;&nbsp;
+		            <button title="Xóa" onclick="return confirm(&#39;Xóa danh mục này ?&#39;); " class="delete btn btn-sm btn-danger"><i class="fa fa-times-circle"></i> Xóa</button>
+			      </td>
+			    </tr><tr><td><strong>3</strong></td><td><strong style="color:black;font-weight: bold;font-size:18px">Trẻ em</strong></td><td class="list_td aligncenter">
+		            <button title="Sửa" class="edit btn btn-sm btn-warning" data-name="Trẻ em" data-id="3" data-parent-id="0"><i class="fa fa-pencil"></i> Sửa</button>&nbsp;&nbsp;&nbsp;
+		            <button title="Xóa" onclick="return confirm(&#39;Xóa danh mục này ?&#39;); " class="delete btn btn-sm btn-danger"><i class="fa fa-times-circle"></i> Xóa</button>
+			      </td>
+			    </tr><tr><td><strong>13</strong></td><td style="color:black;font-weight: bold">--Áo thun</td><td class="list_td aligncenter">
+		            <button title="Sửa" class="edit btn btn-sm btn-warning" data-name="Áo thun" data-id="13" data-parent-id="3"><i class="fa fa-pencil"></i> Sửa</button>&nbsp;&nbsp;&nbsp;
+		            <button title="Xóa" onclick="return confirm(&#39;Xóa danh mục này ?&#39;); " class="delete btn btn-sm btn-danger"><i class="fa fa-times-circle"></i> Xóa</button>
+			      </td>
+			    </tr>										</tbody>
+									</table>
+	                            </div>
+                            </div>
+                        </div>
+                    </div> 
+                </div>
+            </div>
+        </div>	
+        			<div class="modal fade" id="modal-id">
+
+        				<div class="modal-dialog">
+        					<div class="modal-content">
+        						<div class="modal-header">
+        							<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+        							<h4 class="modal-title">Thêm danh mục</h4>
+        						</div>
+        						<div class="modal-body">
+        							  <form id="form1" class="form-horizontal" method="post" action="http://localhost/unishop/cp_admin/category">
+        							  	<input type="hidden" name="_token" value="yOk4C6bbfRtghsXwe1nvPYDx5cKk5e2ILNiFB0Vb">
+                                        <div class="form-group">
+                                            <label class="col-sm-3 control-label">Tên danh mục<span class="asterisk">*</span>
+                                            </label>
+                                            <div class="col-sm-9">
+                                                <input type="text" name="category_name" class="form-control" required="">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-sm-3 control-label">Danh mục cha <span class="asterisk">*</span>
+                                            </label>
+                                            <div class="col-sm-9">
+                                                <select class="form-control" required="" name="parent_id">
+                                                	<option value="-1" disabled="" selected="">Chọn danh mục cha</option>
+                                                	<option value="0">ROOT</option>
+                                                    <option class="ctadd" value="1"> Nam</option><option class="ctadd" value="2"> Nữ</option><option class="ctadd" value="3"> Trẻ em</option>                                                </select>
+                                              
+
+                                            </div>                                           
+                                        </div>
+                                   
+        						</form></div>
+        						<div class="modal-footer">
+        							<button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>
+        							<button type="submit" class="btn btn-primary">Thêm mới</button>
+        						</div>
+        						 
+        					</div>
+        				</div>
+        			</div>
+        		
+        			<div class="modal fade" id="modal-edit" aria-hidden="true" style="display: none;">
+
+        				<div class="modal-dialog">
+        					<div class="modal-content">
+        						<div class="modal-header">
+        							<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+        							<h4 class="modal-title">Sửa danh mục</h4>
+        						</div>
+        						<div class="modal-body">
+        							  <form id="form2" class="form-horizontal" method="post" action="http://localhost/unishop/cp_admin/category/1">
+        							  	<input type="hidden" name="_token" value="yOk4C6bbfRtghsXwe1nvPYDx5cKk5e2ILNiFB0Vb">
+                                        <input type="hidden" name="_method" value="PATCH">
+                                        <div class="form-group">
+                                            <label class="col-sm-3 control-label">Tên danh mục<span class="asterisk">*</span>
+                                            </label>
+                                            <div class="col-sm-9">
+                                                <input type="text" id="category_name" name="category_name" class="form-control" required="" value="">
+
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-sm-3 control-label">Danh mục cha <span class="asterisk">*</span>
+                                            </label>
+                                            <div class="col-sm-9">
+                                                <select class="form-control" id="category" name="parent_id"><option selected="" value="0">ROOT</option></select>
+                                               
+
+                                            </div>                                           
+                                        </div>
+                                   
+        						</form></div>
+        						<div class="modal-footer">
+        							<button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>
+        							<button type="submit" class="btn btn-primary">Cập nhật</button>
+        						</div>
+        						 
+        					</div>
+        				</div>
+        			</div>	
+
+        				
+                
+        <!-- END MAIN CONTENT -->
+
+    </div>
+    <!-- END WRAPPER -->
+
+
+    <!-- BEGIN MANDATORY SCRIPTS -->
+     <script src="./Unishop-Danh mục Sản phẩm_files/jquery-1.11.1.min.js.download"></script>
+    <!-- <script src="public/source/admin/plugins/jquery-migrate-1.2.1.min.js"></script> -->
+    <script src="./Unishop-Danh mục Sản phẩm_files/jquery-ui-1.11.2.min.js.download"></script>
+   
+    <script src="./Unishop-Danh mục Sản phẩm_files/bootstrap.min.js.download"></script>
+    <script src="./Unishop-Danh mục Sản phẩm_files/bootstrap-hover-dropdown.min.js.download"></script>
+    <script src="./Unishop-Danh mục Sản phẩm_files/jquery.mCustomScrollbar.concat.min.js.download"></script>
+    <script src="./Unishop-Danh mục Sản phẩm_files/jquery.mmenu.min.all.js.download"></script>
+    <script src="./Unishop-Danh mục Sản phẩm_files/breakpoints.js.download"></script>
+    <script src="./Unishop-Danh mục Sản phẩm_files/jquery-numerator.js.download"></script>
+    <script src="./Unishop-Danh mục Sản phẩm_files/jquery.cookie.min.js.download" type="text/javascript"></script>
+    <!-- END MANDATORY SCRIPTS -->
+    <!-- BEGIN PAGE LEVEL SCRIPTS -->
+    <script src="./Unishop-Danh mục Sản phẩm_files/metrojs.min.js.download"></script>
+    <script src="./Unishop-Danh mục Sản phẩm_files/jquery.flot.js.download"></script>
+    <script src="./Unishop-Danh mục Sản phẩm_files/jquery.flot.animator.min.js.download"></script>
+    <script src="./Unishop-Danh mục Sản phẩm_files/jquery.flot.resize.js.download"></script>
+    <script src="./Unishop-Danh mục Sản phẩm_files/jquery.flot.time.min.js.download"></script>
+    <script src="./Unishop-Danh mục Sản phẩm_files/jquery.ui.touch-punch.min.js.download"></script>
+    <!-- END  PAGE LEVEL SCRIPTS -->
+    <script src="./Unishop-Danh mục Sản phẩm_files/application.js.download"></script>
+<script type="text/javascript">    
+                                    
+       $('.edit').each(function() {
+
+        $(this).click(function() {
+
+          
+             id= $(this).attr('data-id');
+             url ="cp_admin/category/"+id+"/edit";
+                $.ajaxSetup({
+                    headers: {
+                                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                             }
+                });
+
+                $.get(url, function(data) {
+               
+                     $('#category_name').val(data.name);
+
+                     
+
+                       
+                            $('#category').html('');
+                            if(data.choice=='ROOT')
+                            {
+                                $('#form2').attr('action', "cp_admin/category/"+id);
+                                $('#category').html("<option selected value='0'>"+data.choice+"</option>");
+                            }else
+                            {     html ='';
+                                $.each(data.choice,function(index,item) {
+                                    if(data.id==item.id)
+                                    {
+                                     $('#form2').attr('action', "cp_admin/category/"+id);
+                                     html+= "<option selected value='"+item.id+"'>"+item.name+"</option>";
+                                    }else
+                                    {
+                                        $('#form2').attr('action', "cp_admin/category/"+id);
+                                       html+= "<option  value='"+item.id+"'>"+item.name+"</option>";
+                                    }
+                                    
+                                });
+                                $('#category').html(html);
+                            }
+                            
+                            $('#modal-edit').modal('show'); 
+                            
+                         
+                        
+                         
+                   
+
+                        
+                    
+                });
+
+             });
+        });
+
+
+ </script>
+
+
+<script id="wappalyzer" src="chrome-extension://gppongmhjkpfnbhagpmjfkannfbllamg/js/inject.js"></script></body></html>
