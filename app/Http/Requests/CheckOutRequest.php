@@ -25,17 +25,19 @@ class CheckOutRequest extends FormRequest
     {
         return [
             'name'=>'required',
-            'phone'=>'required',
+            'phone'=>'required|phone',
             'address'=>'required',
-            'email' => 'required',
+            'email' => 'required|email',
         ];
     }
      public function messages(){
         return [
             'name.required' => 'Vui lòng nhập họ và tên',
             'phone.required' => 'Vui lòng nhập số điện thoại',
+            'phone.phone' => 'Vui lòng nhập đúng định dạng số điện thoại',
             'address.required'=>'Vui lòng nhập địa chỉ',
-            'email.required' => 'Vui lòng nhập email'
+            'email.required' => 'Vui lòng nhập email',
+            'email.email' => 'Vui lòng nhập đúng định dạng email'
         ];
     }
 }

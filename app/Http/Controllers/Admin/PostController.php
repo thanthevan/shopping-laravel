@@ -79,10 +79,10 @@ class PostController extends Controller
 
             return redirect()->back()->with(['notify' => 'success', 'mss' => "Thêm  thành công"]);
        }else{
-        return redirect()->back()->with(['error' => 'success', 'mss' => "Thêm  thất bại"]);
+        return redirect()->back()->with(['notify' => 'error', 'mss' => "Thêm  thất bại"]);
        }
          }else{
-        return redirect()->back()->with(['error' => 'success', 'mss' => "Thêm  thất bại"]);
+        return redirect()->back()->with(['notify' => 'error', 'mss' => "Thêm  thất bại"]);
        }
         
      
@@ -98,9 +98,9 @@ class PostController extends Controller
     {
           $post =  Post::find($id);
 
-         $categorypost = CategoryPost::all();
+         
 
-         return view('admin.post.edit',compact('categorypost','post'));
+         return view('admin.post.view',compact('post'));
     }
 
     /**
@@ -111,7 +111,11 @@ class PostController extends Controller
      */
     public function edit($id)
     {
-        //
+         $post =  Post::find($id);
+
+         $categorypost = CategoryPost::all();
+
+         return view('admin.post.edit',compact('post','categorypost'));
     }
 
     /**
@@ -159,7 +163,7 @@ class PostController extends Controller
 
             return redirect()->back()->with(['notify' => 'success', 'mss' => "Thêm  thành công"]);
        }else{
-        return redirect()->back()->with(['error' => 'success', 'mss' => "Thêm  thất bại"]);
+        return redirect()->back()->with(['notify' => 'error', 'mss' => "Thêm  thất bại"]);
        }
          }else{
         $post = new Post;
@@ -179,7 +183,7 @@ class PostController extends Controller
 
             return redirect()->back()->with(['notify' => 'success', 'mss' => "Thêm  thành công"]);
        }else{
-        return redirect()->back()->with(['error' => 'success', 'mss' => "Thêm  thất bại"]);
+        return redirect()->back()->with(['notify' => 'error', 'mss' => "Thêm  thất bại"]);
        }
        }
     }
@@ -192,7 +196,14 @@ class PostController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $post = Post::find($id);
+        if($post->delete())
+        {
+
+        return redirect()->back()->with(['notify' => 'success', 'mss' => "Xóa  thành công"]);
+       }else{
+        return redirect()->back()->with(['notify' => 'error', 'mss' => "Xóa  thất bại"]);
+       }
     }
 }
  

@@ -1,8 +1,11 @@
 @extends('page.layout')
 @section('headmeta')
 <title>Unishop | Chi tiết Sản phẩm</title>
-<meta name="description" content="home.blade.php">
-<meta name="keywords" content="">
+
+ @foreach ($product as $pd)
+<meta name="keywords" content="{{ $pd->meta_keyword}}">
+<meta name="description"  content="{{ $pd->meta_describe}}">
+@endforeach
 <meta name="author" content="ttv">
 @endsection
 @section('content')
@@ -29,7 +32,12 @@
         <div class="row">
           @foreach ($product as $pd)
            <div class="col-md-6">
-            <div class="product-gallery"><span class="product-badge text-danger">30% Off</span>
+            <div class="product-gallery">
+                @if($pd->promo_price!=0)
+                    <span class="product-badge text-danger">Giảm giá: {{(round(100*($pd->unit_price-$pd->promo_price)/$pd->unit_price)) }}%</span>
+                    @elseif($pd->status==2)
+                     <span class="product-badge text-danger">Mới</span>
+                     @endif
               <div>
                 <div><img id="showimg" src="public/uploads/product/{{$pd['image_product'][0]['image']}}" width="280px" style="margin-left:90px;"></div>
               </div>
@@ -48,9 +56,16 @@
                  <i class="icon-star filled"></i> 
                 @endfor
               </div><span class="text-muted align-middle">&nbsp;&nbsp;| lượt xem({{$pd->view_count}})</span>
-            <h2 class="padding-top-1x text-normal">{{$pd->product_name}}</h2><span class="h2 d-block">
-              {{ $pd['promo_price']!=0?"<del class='text-muted text-normal'>".number_format($pd['unit_price'])." VNĐ</del>".number_format($pd['promo_price'])." VNĐ": number_format($pd['unit_price'])." VNĐ" }}</span>
-            <p>{{$pd->describe}}</p>
+            <h2 class="padding-top-1x text-normal" style="color: #0da9ef;">{{$pd->product_name}}</h2><span class="h2 d-block">
+              @if($pd['promo_price']!=0) 
+                    <del>{{number_format($pd['unit_price'])}} VNĐ</del> 
+                    <span style="color: red">{{number_format($pd['promo_price'])." VNĐ"}}</span>
+                    @else
+                    {{number_format($pd['unit_price'])." VNĐ"}}
+                    @endif </span>
+            <p>@php
+                                          echo  html_entity_decode($pd->describe,ENT_QUOTES);
+                                       @endphp</p>
             <div class="row margin-top-1x">
               <div class="col-sm-4">
                 <div class="form-group">
@@ -91,7 +106,7 @@
                 </div>
               </div>
             </div>
-            <div class="padding-bottom-1x mb-2"><span class="text-medium">Danh mục:&nbsp;</span><a class="navi-link" href="#">Men’s shoes,</a><a class="navi-link" href="#"> Snickers,</a><a class="navi-link" href="#"> Sport shoes</a></div>
+            <div class="padding-bottom-1x mb-2"><span class="text-medium">Danh mục:&nbsp;</span><a class="navi-link" href="#">{{category_name_by_pi($pd->id)}}</a></div>
             <hr class="mb-3">
             <div class="d-flex flex-wrap justify-content-between">
               <div class="entry-share mt-2 mb-2"><span class="text-muted">Chia sẻ:</span>
@@ -108,55 +123,66 @@
           <div class="col-lg-10 offset-lg-1">
             <ul class="nav nav-tabs" role="tablist">
               <li class="nav-item"><a class="nav-link active" href="#description" data-toggle="tab" role="tab">Thông tin</a></li>
-              <li class="nav-item"><a class="nav-link" href="#reviews" data-toggle="tab" role="tab">Nhận xét (3)</a></li>
+              <li class="nav-item"><a class="nav-link" href="#reviews" data-toggle="tab" role="tab">Nhận xét ({{$comments->count()}})</a></li>
             </ul>
             <div class="tab-content">
               <div class="tab-pane fade show active" id="description" role="tabpanel">
                 <span style="color:black">Giới thiệu:</span>
-                <p>{{$pd->describe}}</p>
-                <span style="color:black">Chất liệu:</span> 
-                <p >Costong</p>
+                <p>@php
+                                          echo  html_entity_decode($pd->describe,ENT_QUOTES);
+                                       @endphp</p>
+                
                 <span style="color:black">Nguồn gốc:</span>
                 <p class="mb-30">{{$pd->producer}}</p>
 
               </div>
               <div class="tab-pane fade" id="reviews" role="tabpanel">
                 <!-- Review-->
+                @foreach ($comments as $cm)
+                 
                 <div class="comment">
                   <div class="comment-author-ava"><img src="public/source/page/img/user.png" alt="Review author"></div>
                   <div class="comment-body">
                     <div class="comment-header d-flex flex-wrap justify-content-between">
-                      <h4 class="comment-title">Soft, comfortable, quite durable...</h4>
+                      <h4 class="comment-title">{{$cm->created}}</h4>
                       <div class="mb-2">
-                          <div class="rating-stars"><i class="icon-star filled"></i><i class="icon-star filled"></i><i class="icon-star filled"></i><i class="icon-star filled"></i><i class="icon-star"></i>
-                          </div>
+                         <div class="rating-stars">
+                           @for ($i = 0; $i <$cm->vote ; $i++)
+                            <i class="icon-star filled"></i> 
+                           @endfor
+                           </div>
                       </div>
                     </div>
-                    <p class="comment-text">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt.</p>
-                    <div class="comment-footer"><span class="comment-meta">Jacob Hammond</span></div>
+                    <p class="comment-text">{{$cm->comment}}</p>
+                    <div class="comment-footer"><span class="comment-meta">{{$cm->nameUser($cm->user_id)}}</span></div>
                   </div>
                 </div>
-                <!-- Review Form-->
+
+                @endforeach
+                {{$comments->links()}}
+                <!-- Review Form--> 
                 <h5 class="mb-30 padding-top-1x">Đánh giá và nhận xét sản phẩm</h5>
-                @if (Auth::check())
+                @if (Auth::guard('web')->check())
                 <form class="row" method="post" action="{{ route('review') }}">
+                  <input type="hidden" value="{{Auth::guard('web')->user()->id}}" name="user_id">
+                  <input type="hidden" value="{{$pd->id}}" name="product_id">
                   {{ csrf_field() }}
                   <div class="col-sm-6">
                     <div class="form-group">
                       <label for="review_rating">Đánh giá</label>
-                      <select class="form-control form-control-rounded" name="review_rating" id="review_rating">
-                        <option>5 Sao</option>
-                        <option>4 Sao</option>
-                        <option>3 Sao</option>
-                        <option>2 Sao</option>
-                        <option>1 Sao</option>
+                      <select class="form-control form-control-rounded" name="vote" id="review_rating">
+                        <option value="5">5 Sao</option>
+                        <option value="4">4 Sao</option>
+                        <option value="3">3 Sao</option>
+                        <option value="2">2 Sao</option>
+                        <option value="1">1 Sao</option>
                       </select>
                     </div>
                   </div>
                   <div class="col-12">
                     <div class="form-group">
                       <label for="review_text">Nhận xét </label>
-                      <textarea class="form-control form-control-rounded" id="review_text" name="review_text" rows="8" required></textarea>
+                      <textarea class="form-control form-control-rounded" id="review_text" name="comment" rows="8" required></textarea>
                     </div>
                   </div>
                   <div class="col-12 text-right">

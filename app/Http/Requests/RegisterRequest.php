@@ -13,7 +13,7 @@ class RegisterRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -21,10 +21,33 @@ class RegisterRequest extends FormRequest
      *
      * @return array
      */
-    public function rules()
+   public function rules()
     {
+         return [
+            'emailres' => 'required|email|uq',
+            'nameres' => 'required',
+            'phoneres'=> 'required|phone',
+            'addressres' => 'required',
+            'passwordres'=> 'required|min:6|max:20',
+            'repassword'=> 'required|same:passwordres',
+           
+        ];
+    }
+    public function messages(){
         return [
-            //
+            'emailres.required' => 'Vui lòng nhập email',
+            'emailres.uq' => 'Email đã được sử dụng',
+            'emailres.email' => 'Vui lòng nhập email hợp lệ',
+            'nameres.required' => 'Vui lòng nhập họ tên',
+            'phoneres.required' => 'Vui lòng nhập số điện thoại',
+            'phoneres.phone' => 'Vui lòng nhập số điện thoại hợp lệ',
+            'addressres.required' => 'Vui lòng nhập địa chỉ',
+            'passwordres.required' => 'Vui lòng nhập mật khẩu',
+            'repassword.required'=> 'Vui lòng nhập lại mật khẩu',
+            'passwordres.min'=> 'Mật khẩu ngắn hơn 6 ký tự',
+            'passwordres.max'=> 'Mật khẩu dài hơn 20 ký tự',
+            'repassword.same'=> 'Nhập lại mật khẩu không khớp'
+
         ];
     }
 }

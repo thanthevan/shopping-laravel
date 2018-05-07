@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\ImageProduct;
 use App\Product;
 use App\Size;
+use App\OrderDetail;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Intervention\Image\Facades\Image;
@@ -54,6 +55,9 @@ class ProductController extends Controller {
 		$md = $request->metades;
 		$mk = $request->metakey;
 		$photos = $request->file('file');
+
+		if(empty($photos))
+			return redirect()->back()->with(['notify' => 'error', 'mss' => "Ảnh không được bỏ trống"]);
 
 //product
 		$product = new Product;
@@ -106,7 +110,7 @@ class ProductController extends Controller {
 			return redirect()->back()->with(['notify' => 'success', 'mss' => "Thêm  thành công"]);
 
 		} else {
-			return redirect()->back()->with(['error' => 'success', 'mss' => "Thêm sản phẩm thất bại"]);
+			return redirect()->back()->with(['notify' => 'error', 'mss' => "Thêm sản phẩm thất bại"]);
 		}
 
 	}
@@ -119,13 +123,14 @@ class ProductController extends Controller {
 	 */
 	public function show($id) {
 		$product = Product::where('id', '=', $id)->get();
+		$db = OrderDetail::count_product_order($id);
 		if (count($product) > 0) {
 			$product_id = $product->first()->id;
 			$color = Color::where('product_id', '=', $product_id)->get();
 			$size = Size::where('product_id', '=', $product_id)->get();
 			$image = ImageProduct::where('product_id', '=', $product_id)->get();
 
-			return view('admin.product.detail', compact('product', 'color', 'size', 'image'));
+			return view('admin.product.detail', compact('product', 'color', 'size', 'image','db'));
 		}
 
 	}
@@ -318,7 +323,7 @@ class ProductController extends Controller {
 			return redirect()->back()->with(['notify' => 'success', 'mss' => "Cập nhật sản phẩm  thành công"]);
 
 		} else {
-			return redirect()->back()->with(['error' => 'success', 'mss' => "Cập nhật sản phẩm thất bại"]);
+			return redirect()->back()->with(['notify' => 'error', 'mss' => "Cập nhật sản phẩm thất bại"]);
 		}
 	}
 
@@ -329,9 +334,14 @@ class ProductController extends Controller {
 	 * @return \Illuminate\Http\Response
 	 */
 	public function destroy($id) {
-		Product::destroy($id);
+		
+		if(OrderDetail::where('product_id', '=', $id)->get())
+		{
+            return redirect()->back()->with(['notify' => 'error', 'mss' => "Không thể xóa sản phẩm"]);
+		}
 		Color::where('product_id', '=', $id)->delete();
 		Size::where('product_id', '=', $id)->delete();
+		Product::destroy($id);
 		$images = ImageProduct::where('product_id', '=', $id)->get();
 		foreach ($images as $img) {
 			Storage::deleteDirectory("/public/uploads/product/{$img->image}");

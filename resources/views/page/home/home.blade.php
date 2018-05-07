@@ -46,38 +46,38 @@
         <h3 class="text-center mb-30">Danh mục sản phẩm</h3>
         <div class="row">
           <div class="col-md-4 col-sm-6">
-            <div class="card mb-30"><a class="card-img-tiles" href="shop-grid-ls.html">
+            <div class="card mb-30"><a class="card-img-tiles" href="{{ route('typeproduct',['alias'=>'new']) }}">
                 <div class="inner">
                   <div class="main-img"><img src="public/source/page/img/shop/categories/24.jpg" alt="Category"></div>
                   <div class="thumblist"><img src="public/source/page/img/shop/categories/26.jpg" alt="Category"><img src="public/source/page/img/shop/categories/25.jpg" alt="Category"></div>
                 </div></a>
               <div class="card-block text-center">
                 <h4 class="card-title">Sản phẩm mới</h4>
-               <a class="btn btn-outline-primary btn-sm" href="shop-grid-ls.html">Xem chi tiết</a>
+               <a class="btn btn-outline-primary btn-sm" href="{{ route('typeproduct',['alias'=>'new']) }}">Xem chi tiết</a>
               </div>
             </div>
           </div>
           <div class="col-md-4 col-sm-6">
-            <div class="card mb-30"><a class="card-img-tiles" href="shop-grid-ls.html">
+            <div class="card mb-30"><a class="card-img-tiles" href="{{ route('typeproduct',['alias'=>'sale']) }}">
                 <div class="inner">
                   <div class="main-img"><img src="public/source/page/img/shop/categories/21.jpg" alt="Category"></div>
                   <div class="thumblist"><img src="public/source/page/img/shop/categories/22.jpg" alt="Category"><img src="public/source/page/img/shop/categories/23.jpg" alt="Category"></div>
                 </div></a>
               <div class="card-block text-center">
                 <h4 class="card-title">Sản phẩm Sale</h4>
-                <a class="btn btn-outline-primary btn-sm" href="shop-grid-ls.html">Xem chi tiết</a>
+                <a class="btn btn-outline-primary btn-sm" href="{{ route('typeproduct',['alias'=>'sale']) }}">Xem chi tiết</a>
               </div>
             </div>
           </div>
           <div class="col-md-4 col-sm-6">
-            <div class="card mb-30"><a class="card-img-tiles" href="shop-grid-ls.html">
+            <div class="card mb-30"><a class="card-img-tiles" href="{{ route('typeproduct',['alias'=>'top']) }}">
                 <div class="inner">
                   <div class="main-img"><img src="public/source/page/img/shop/categories/18.jpg" alt="Category"></div>
                   <div class="thumblist"><img src="public/source/page/img/shop/categories/19.jpg" alt="Category"><img src="public/source/page/img/shop/categories/20.jpg" alt="Category"></div>
                 </div></a>
               <div class="card-block text-center">
                 <h4 class="card-title">Sản phẩm bán chạy</h4>
-                <a class="btn btn-outline-primary btn-sm" href="shop-grid-ls.html">Xem chi tiết</a>
+                <a class="btn btn-outline-primary btn-sm" href="{{ route('typeproduct',['alias'=>'top']) }}">Xem chi tiết</a>
               </div>
             </div>
           </div>
@@ -123,7 +123,11 @@
         
              <div class="grid-item">
                 <div class="product-card">
-                  <div class="product-badge text-danger">50% Off</div>
+                  @if($product->promo_price!=0)
+                    <div class="product-badge text-danger">Giảm giá: {{(round(100*($product->unit_price-$product->promo_price)/$product->unit_price)) }}%</div>
+                    @elseif($product->status==2)
+                     <div class="product-badge text-danger">Mới</div>
+                     @endif
                   <div class="rating-stars">
                     @php
                       $vote=$product->vote;
@@ -135,11 +139,16 @@
                   <a class="product-thumb" href="{{ route('detailproduct',['alias'=>$product->alias,'id'=>$product->id]) }}"><img src="public/uploads/product/{{$product->image_product[0]['image']}}" alt="Product"></a>
                   <h3 class="product-title"><a href="{{ route('detailproduct',['alias'=>$product->alias,'id'=>$product->id]) }}">{{$product->product_name}}</a></h3>
                   <h4 class="product-price">
-                    {{$product->promo_price!=0?"<del>".number_format($product->unit_price)." VNĐ</del>".number_format($product->promo_price)." VNĐ":number_format($product->unit_price)." VNĐ"}}
+                    @if($product->promo_price!=0)
+                    <del>{{number_format($product->unit_price)}} VNĐ</del> 
+                    {{number_format($product->promo_price)." VNĐ"}}
+                    @else
+                    {{number_format($product->unit_price)." VNĐ"}}
+                    @endif
                   </h4>
                   <div class="product-buttons">
                     <button class="btn btn-outline-secondary btn-sm btn-wishlist btn-quickview clearfix-sm-hidden" data-id="{{$product->id}}" data-toggle="tooltip" title="Xem nhanh"><i class="icon-search"></i></button>
-                    <button class="  btn btn-outline-primary btn-sm" data-toast data-toast-type="success" data-toast-position="topRight" data-toast-icon="icon-circle-check" data-toast-title="{{$product->product_name}}" data-toast-message="đã thêm vào giỏ hàng!" data-id="{{$product->id }}">Thêm vào giỏ hàng</button>
+                  {{--   <button class="  btn btn-outline-primary btn-sm" data-toast data-toast-type="success" data-toast-position="topRight" data-toast-icon="icon-circle-check" data-toast-title="{{$product->product_name}}" data-toast-message="đã thêm vào giỏ hàng!" data-id="{{$product->id }}">Thêm vào giỏ hàng</button> --}}
                   </div>
                 </div>
               </div>

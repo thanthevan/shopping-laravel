@@ -77,8 +77,7 @@
 </style>
 @endsection
 @section('content') 
-
-        <div id="main-content" class="post">
+        <div id="main-content" class="post" style="padding-top: 30px">
             <div class="page-title">
                 <i class="icon-custom-left"></i>
                 <h3><strong>Viết bài</strong></h3>

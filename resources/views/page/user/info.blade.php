@@ -38,53 +38,73 @@
               </div>
             </aside>
             <nav class="list-group">
-            	<a class="list-group-item justify-content-between" href="{{ route('infoorder') }}"><span><i class="icon-bag"></i>Danh sách sản phẩm đã mua</span><span class="badge badge-primary badge-pill">6</span></a>
+            	<a class="list-group-item justify-content-between" href="{{ route('infoorder') }}"><span><i class="icon-bag"></i>Danh sách sản phẩm đã mua</span></a>
             	<a class="list-group-item active" href="{{ route('infouser') }}"><i class="icon-head"></i>Thông tin cá nhân</a>
             </nav>
           </div>
           <div class="col-lg-8">
             <div class="padding-top-2x mt-2 hidden-lg-up"></div>
-            <form class="row">
+            <form class="row" method="post" action="{{ route('updateinfo') }}">
+              {{csrf_field()}}
+              <input type="hidden" name="id" value="{{Auth::user()->id}}">
               <div class="col-md-6">
                 <div class="form-group">
                   <label for="account-fn">Họ và Tên</label>
-                  <input class="form-control" type="text" id="account-fn" value="{{Auth::user()->name}}" required>
+                  <input class="form-control" type="text" name="name" value="{{Auth::user()->name}}" required>
+                              @if (count($errors) > 0)
+            <span style="color: red">{{$errors->first('name')}}</span>
+            @endif
                 </div>
               </div>
               <div class="col-md-6">
                 <div class="form-group">
                   <label for="account-ln">Ngày sinh</label>
-                  <input class="form-control" type="text" id="account-ln" value="{{Auth::user()->birthday}}" required>
+                  <input class="form-control" type="date" name="birthday" value="{{date('Y-m-d',strtotime(Auth::user()->birthday))}}" required>
+                         @if (count($errors) > 0)
+            <span style="color: red">{{$errors->first('birthday')}}</span>
+            @endif
                 </div>
               </div>
               <div class="col-md-6">
                 <div class="form-group">
-                  <label for="account-email">E-mail</label>
-                  <input class="form-control" type="email" id="account-email" value="{{Auth::user()->email}}" disabled>
+                  <label for="account-email">Địa chỉ</label>
+                  <input class="form-control" type="text" name="address" value="{{Auth::user()->address}}" >
+                         @if (count($errors) > 0)
+            <span style="color: red">{{$errors->first('address')}}</span>
+            @endif
                 </div>
               </div>
               <div class="col-md-6">
                 <div class="form-group">
                   <label for="account-phone">Số điện thoại</label>
-                  <input class="form-control" type="text" id="account-phone" value="{{Auth::user()->phone}}" required>
+                  <input class="form-control" type="text" name="phone" value="{{Auth::user()->phone}}" required>
+                         @if (count($errors) > 0)
+            <span style="color: red">{{$errors->first('phone')}}</span>
+            @endif
                 </div>
               </div>
               <div class="col-md-6">
                 <div class="form-group">
                   <label for="account-pass">Mật khẩu mới</label>
-                  <input class="form-control" type="password" id="account-pass">
+                  <input class="form-control" type="password" name="password" value="abcdef">
+                  @if (count($errors) > 0)
+            <span style="color: red">{{$errors->first('password')}}</span>
+            @endif
                 </div>
               </div>
               <div class="col-md-6">
                 <div class="form-group">
                   <label for="account-confirm-pass">Nhập lại mật khẩu</label>
-                  <input class="form-control" type="password" id="account-confirm-pass">
+                  <input class="form-control" type="password" name="repassword" value="abcdef">
+                  @if (count($errors) > 0)
+            <span style="color: red">{{$errors->first('repassword')}}</span>
+            @endif
                 </div>
               </div>
               <div class="col-12">
                 <hr class="mt-2 mb-3">
                 <div class="d-flex flex-wrap justify-content-between align-items-center">
-                  <button class="btn btn-primary margin-right-none" type="button" data-toast data-toast-position="topRight" data-toast-type="success" data-toast-icon="icon-circle-check" data-toast-title="Success!" data-toast-message="Your profile updated successfuly.">Cập nhật thông tin</button>
+                  <button class="btn btn-primary margin-right-none" type="submit" >Cập nhật thông tin</button>
                 </div>
               </div>
             </form>

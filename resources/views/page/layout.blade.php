@@ -16,6 +16,23 @@
     <link id="mainStyles" rel="stylesheet" media="screen" href="public/source/page/css/styles.min.css">
     <!-- Modernizr-->
     <script src="public/source/page/js/modernizr.min.js"></script>
+    <style>
+      .result_search{
+        background: white;
+    /* border: 1px solid black; */
+    width: 100%;
+    /* position: absolute; */
+    /* display: table; */
+    position: absolute;
+    top: 100%;
+    /* right: 2px; */
+    /* margin-top: -20px; */
+    z-index: 5;
+      }
+       .result_search a:hover{
+        color:black;
+       }
+    </style>
   </head>
   <!-- Body-->
   <body>
@@ -27,7 +44,7 @@
   fjs.parentNode.insertBefore(js, fjs);
 }(document, 'script', 'facebook-jssdk'));</script>
     <!-- Template Customizer-->
-    @include('page.leftmenu')
+    
     <!-- Topbar-->
     @include('page.topbar')
      <!-- endTopbar-->
@@ -53,6 +70,24 @@
       </div>
     </div>
    @endif
+
+   @if (session('msgo'))
+     <div class="modal fade" id="hdh" tabindex="-1" role="dialog">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h4 class="modal-title">Thông báo</h4>
+            <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          </div>
+          <div class="modal-body">
+            <p>{{session('msgo')}}</p>
+           
+          </div>
+          
+        </div>
+      </div>
+    </div>
+   @endif
       <!-- Back To Top Button-->
       <a class="scroll-to-top-btn" href="#"><i class="icon-arrow-up"></i></a>
     <!-- Backdrop-->
@@ -68,22 +103,20 @@
     @yield('script-lr')
     <script type="text/javascript">
       $(function() {
-      mylib.quickview();
-      mylib.carthover();
-      mylib.addtocartajax();
-      mylib.updatecartajax();
-      mylib.removecart();
-      mylib.account();
+      
        @if (session('status'))
        $('#dat-hang-thanh-cong').modal('show');
        @endif
+        @if (session('msgo'))
+       $('#hdh').modal('show');
+       @endif
 
-
+ });
 
 //fill product
-   mylib.fill();
-   mylib.paginateajax();
-   });
+   
+
+      
     </script>
 
 

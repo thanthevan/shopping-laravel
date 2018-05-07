@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Feedback;
 
 class FeedBackController extends Controller
 {
@@ -14,7 +15,8 @@ class FeedBackController extends Controller
      */
     public function index()
     {
-        return view('admin.feedback.index');
+        $feedbacks = Feedback::orderBy('created' ,'DESC')->get();
+        return view('admin.feedback.index',compact('feedbacks'));
     }
 
     /**
@@ -46,7 +48,15 @@ class FeedBackController extends Controller
      */
     public function show($id)
     {
-        //
+         $feedback = FeedBack::find($id);
+         $feedback->status = 1;
+         $feedbacks = Feedback::orderBy('created' ,'DESC')->get();
+         if($feedback->save())
+         {
+
+          return view('admin.feedback.index',compact('feedback','feedbacks'));
+         }
+        
     }
 
     /**
@@ -57,7 +67,7 @@ class FeedBackController extends Controller
      */
     public function edit($id)
     {
-        //
+       
     }
 
     /**

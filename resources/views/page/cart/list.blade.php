@@ -42,6 +42,7 @@
                 <th>Tên sản phẩm</th>
                 <th class="text-center">Số lượng</th>
                 <th class="text-center">Đơn giá</th>
+                <th class="text-center">Thành tiền</th>
                 <th class="text-center"><a class="btn btn-sm btn-outline-danger" href="{{ route('cart-delete-all') }}">Xóa tất cả</a></th>
               </tr>
             </thead>
@@ -57,7 +58,7 @@
                 </td>
                 <td class="text-center">
                   <div class="count-input">
-                    <select class="form-control total-quanlity" data-rowid="{{$cart->rowId}}" > 
+                    <select class="form-control total-quanlity" data-rowid="{{$cart->rowId}}" data-id="{{$cart->id}}"> 
                       @for ($i = 1; $i <=10; $i++)
                          @if ($i==$cart->qty)
                           <option selected>{{$i}}</option>
@@ -69,6 +70,7 @@
                   </div>
                 </td>
                 <td class="text-center text-lg text-medium">{{ number_format($cart->price)." VNĐ"}}</td>
+                <td class="text-center text-lg text-medium">{{ number_format($cart->price * $cart->qty)." VNĐ"}}</td>
                 <td class="text-center"><span class="remove-from-cart" data-rowid="{{$cart->rowId}}" data-toggle="tooltip" title="Xóa"><i class="icon-cross"></i></span></td>
               </tr>
               @endforeach
@@ -82,7 +84,7 @@
         <div class="shopping-cart-footer">
           <div class="column">
           	<a class="btn btn-outline-secondary" href="{{ route('product') }}"><i class="icon-arrow-left"></i>&nbsp;Tiếp tục mua hàng</a></div>
-          @if ($totals!=0)<div class="column"><a class="btn btn-success" href="{{ route('getcheckout') }}">Thanh toán</a></div>@endif
+          @if ($totals!=0)<div class="column"><a class="btn btn-success" href="{{ route('getcheckout') }}">Đặt hàng</a></div>@endif
         </div>
       </div>
     </div>

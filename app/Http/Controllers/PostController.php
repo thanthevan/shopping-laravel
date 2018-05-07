@@ -19,4 +19,13 @@ class PostController extends Controller
     	$pt = Post::find($post_id);
     	return view('page.blog.post',compact('pt'));
     }
+
+     public function blogcate($alias)
+    {
+        $categorypost =CategoryPost::all();
+        $parent_id = CategoryPost::select('id')->where('alias',$alias)->first();
+        $post = Post::where('category_post','=',$parent_id->id)->paginate(2); 
+     
+        return view('page.blog.blog',compact('categorypost','post')); 
+    }
 }

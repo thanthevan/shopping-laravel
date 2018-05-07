@@ -21,8 +21,8 @@
             <p class="text-muted margin-bottom-none">Nhân viên hỗ trợ nhiệt tình 24/7</p>
           </div>
           <div class="col-md-3 col-sm-6 text-center mb-30"><img class="d-block w-90 img-thumbnail rounded-circle mx-auto mb-3" src="public/source/page/img/services/04.png" alt="Payment">
-            <h6>Thanh toán trực tuyến</h6>
-            <p class="text-muted margin-bottom-none">Hỗ trợ thanh toán trực tuyến</p>
+            <h6>Thanh toán nhanh gọn</h6>
+            <p class="text-muted margin-bottom-none">Hỗ trợ thanh toán nhanh gọn</p>
           </div>
         </div>
       </section>
@@ -49,10 +49,10 @@
               <section class="widget widget-links widget-light-skin">
                 <h3 class="widget-title">Thông tin</h3>
                 <ul>
-                  <li><a href="#">Về chúng tôi</a></li>
-                  <li><a href="#">Chính sách mua hàng</a></li>
-                  <li><a href="#">Hướng dẫn mua hàng</a></li>
-                  <li><a href="#">Liên hệ</a></li>
+                  <li><a href="{{ route('info') }}">Về chúng tôi</a></li>
+                  
+                  <li><a href="{{ route('support') }}">Hình thức thanh toán</a></li>
+                  <li><a href="{{ route('contact') }}">Liên hệ</a></li>
                 </ul>
               </section>
             </div>
@@ -61,8 +61,8 @@
               <section class="widget widget-links widget-light-skin">
                 <h3 class="widget-title">Khách hàng </h3>
                 <ul>
-                  <li><a href="#">Thông tin</a></li>
-                  <li><a href="#">Đơn hàng</a></li>
+                  <li><a href="{{ route('infouser') }}">Thông tin</a></li>
+                  <li><a href="{{ route('infoorder') }}">Đơn hàng</a></li>
                 </ul>
               </section>
             </div>

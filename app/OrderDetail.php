@@ -18,4 +18,10 @@ class OrderDetail extends Model
     {
         return $this->belongsTo('App\Order','order_id','id');
     }
+
+    public static function count_product_order($id)
+    {
+        $count = OrderDetail::join('Order', 'Order.id', '=', 'OrderDetail.order_id')->where('status','=',1)->where('product_id','=',$id)->sum('OrderDetail.amount');
+        return (int)$count;
+    }
 }

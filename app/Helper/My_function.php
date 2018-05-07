@@ -52,7 +52,7 @@ function category($data, $parent_id, $str = ' ', $select)
 
                 if($val['parent_id']==0)
                 {
-                   echo '<optgroup label='.$ten.'>'; 
+                   echo "<optgroup label='$ten'>"; 
                 }else
                 {
                    echo "<option  selected value='". $id ."'>" . $str  . $ten . "</option>";  
@@ -60,7 +60,7 @@ function category($data, $parent_id, $str = ' ', $select)
             } else {
                 if($val['parent_id']==0)
                 {
-                   echo '<optgroup label='.$ten.'>'; 
+                   echo "<optgroup label='$ten'>"; 
                 }else
                 {
                    echo '<option  value="' . $id . '">' . $str . " " . $ten . '</option>';  
@@ -140,10 +140,10 @@ function listcate($data, $parent_id = 0, $str = "")
                 echo '<td style="color:black;font-weight: bold">' . $str . '-' .$ten. '</td>';
             }
             echo '<td class="list_td aligncenter">
-		            <button title="Sửa"  class="edit btn btn-sm btn-warning ud" data-name="'. $val["name"].'" data-id='.$id.' data-parent-id='.$val['parent_id'].'><i class="fa fa-pencil"></i> Sửa</button>
+		            <button title="Sửa"  class="edit btn btn-sm btn-warning ud" data-name="'. $val["name"].'" data-id='.$id.' data-parent-id='.$val['parent_id'].'><i class="fa fa-pencil"></i></button>
 		            <form style="display: inline-block;" action="'.route('category.destroy',['id'=>$id]).'" method="post">
                        '.csrf_field().''.method_field('DELETE').'
-                      <button type="submit" title="Xóa" onclick="return confirm(\'Xóa danh mục này ?\'); " class="delete btn btn-sm btn-danger"><i class="fa fa-times-circle"></i> Xóa</button>
+                      <button type="submit" title="Xóa" onclick="return confirm(\'Xóa danh mục này ?\'); " class="delete btn btn-sm btn-danger"><i class="fa fa-times-circle"></i></button>
                     </form>
 			      </td>
 			    </tr>';
@@ -166,10 +166,10 @@ function listcatepost($data, $parent_id = 0, $str = "")
                 echo '<td style="color:black;font-weight: bold">' . $str . '-' .$ten. '</td>';
             }
             echo '<td class="list_td aligncenter">
-                    <button title="Sửa"  class="edit btn btn-sm btn-warning udk" data-name="'. $val["name"].'" data-id='.$id.' data-parent-id='.$val['parent_id'].'><i class="fa fa-pencil"></i> Sửa</button>
+                    <button title="Sửa"  class="edit btn btn-sm btn-warning udk" data-name="'. $val["name"].'" data-id='.$id.' data-parent-id='.$val['parent_id'].'><i class="fa fa-pencil"></i></button>
                     <form style="display: inline-block;" action="'.route('categorypost.destroy',['id'=>$id]).'" method="post">
                        '.csrf_field().''.method_field('DELETE').'
-                      <button type="submit" title="Xóa" onclick="return confirm(\'Xóa danh mục này ?\'); " class="delete btn btn-sm btn-danger"><i class="fa fa-times-circle"></i> Xóa</button>
+                      <button type="submit" title="Xóa" onclick="return confirm(\'Xóa danh mục này ?\'); " class="delete btn btn-sm btn-danger"><i class="fa fa-times-circle"></i></button>
                     </form>
                   </td>
                 </tr>';

@@ -122,12 +122,8 @@
               <!-- Widget Tags-->
 
               <!-- Promo Banner-->
-              <section class="promo-box" style="background-image: url(img/banners/01.jpg);">
-                <!-- Choose between .overlay-dark (#000) or .overlay-light (#fff) with default opacity of 50%. You can overrride default color and opacity values via 'style' attribute.--><span class="overlay-dark" style="opacity: .35;"></span>
-                <div class="promo-box-content text-center padding-top-2x padding-bottom-2x">
-                  <h3 class="text-bold text-light text-shadow">New 2017<br>Handbag Collection</h3>
-                  <h4 class="text-light text-thin text-shadow">has just arrived!</h4><a class="btn btn-sm btn-primary" href="shop-grid-ls.html">Shop Now</a>
-                </div>
+            <section class="promo-box" >
+                <div class="fb-page" data-href="https://www.facebook.com/Unishop-957109281123183/"  data-width="350" data-height="240" data-small-header="false" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true"><blockquote cite="https://www.facebook.com/Unishop-957109281123183/" class="fb-xfbml-parse-ignore"><a href="https://www.facebook.com/Unishop-957109281123183/">Unishop</a></blockquote></div>
               </section>
             </aside>
           </div>

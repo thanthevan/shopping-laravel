@@ -13,8 +13,8 @@
                         <img src="public/source/admin/img/account/user-icon.png" alt="Key icon">
                     </div>
                     <div class="login-logo">
-                        <a href="#?login-theme-3">
-                            <img src="public/source/admin/img/account/login-logo.png" alt="Company Logo">
+                        <a href="#">
+                            <span style="color: #0090D9;font-size:30px;margin-right:2px">Uni</span><span style="color: white;font-size:20px"> shop</span>
                         </a>
                     </div>
                     <hr>
@@ -54,12 +54,12 @@
 @section('script')
 <!-- END LOCKSCREEN BOX -->
 <!-- BEGIN MANDATORY SCRIPTS -->
-<script src="public/source/admin/plugins/jquery-1.11.js"></script>
-<script src="public/source/admin/plugins/bootstrap/bootstrap.min.js"></script>
+{{-- <script src="public/source/admin/plugins/jquery-1.11.js"></script>
+<script src="public/source/admin/plugins/bootstrap/bootstrap.min.js"></script> --}}
 <!-- END MANDATORY SCRIPTS -->
 <!-- BEGIN PAGE LEVEL SCRIPTS -->
-
-<script src="public/source/admin/js/account.js"></script>
+{{-- 
+<script src="public/source/admin/js/account.js"></script> --}}
 <!-- END PAGE LEVEL SCRIPTS -->
 </body>
 @endsection

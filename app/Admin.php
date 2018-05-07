@@ -33,11 +33,14 @@ class Admin extends Authenticatable
         }
         return false;
     }
-    public function access(){
+    public function access($role_id){
        
-        return $this->role->role;
+        return Role::find($role_id)->role;
     }
-
+    public function namerole($role_id)
+    {
+        return Role::find($role_id)->name;
+    }
     /**
      * The attributes that should be hidden for arrays.
      *

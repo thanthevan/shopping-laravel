@@ -33,7 +33,7 @@
                         <li class="{{  $active==='order'?'current':''}}">
                             <a href="{{ route('order.index') }}">
                                 <i class="fa fa-pencil-square"></i>
-                                <span class="sidebar-text">Hóa đơn</span>
+                                <span class="sidebar-text">Đơn hàng</span>
                             </a>
                         </li>
                         <li class="{{  ($active==='post' || $active==='categorypost')?'current active':''}}" >
@@ -70,13 +70,15 @@
                                 <span class="fa arrow"></span>
                             </a>
                             <ul class="submenu collapse">
-                               
+
+                               @if (Auth::guard('admin')->user()->access(Auth::guard('admin')->user()->role_id)==1)
+                                   
                                 <li>
                                     <a href="{{ route('employee') }}">
                                         <span class="sidebar-text">Nhân viên</span>
                                     </a>
                                 </li>
-                             
+                              @endif
                                 <li>
                                     <a href="{{ route('user.index') }}">
                                         <span class="sidebar-text">Khách hàng</span>
@@ -86,26 +88,31 @@
                         </li>  
                        
                         
-                        <li>
-                            <a href="charts.html">
+                        <li class="{{  ($active==='thong-ke' ||$active ==='revenueView')?'current active':''}}">
+                            <a href="#">
                                 <i class="glyph-icon flaticon-charts2"></i>
                                 <span class="sidebar-text">Thống kê</span>
+                                <span class="fa arrow"></span>
                             </a>
+                             <ul class="submenu collapse">
+
+                             
+                                   
+                                <li>
+                                    <a href="{{ route('statistical') }}">
+                                <span class="sidebar-text">Thống kê chung</span>
+                                    </a>
+                                </li>
+                            
+                                 <li>
+                                    <a href="{{ route('revenueView') }}">
+                                <span class="sidebar-text">Doanh thu</span>
+                                    </a>
+                                </li>
+                            </ul>
+                            
                         </li>
-                        <li>
-                                <a href="#">
-                                    <i class="glyph-icon flaticon-gallery"></i>
-                                    <span class="sidebar-text">Hình ảnh</span>
-                                    <span class="fa arrow"></span>
-                                </a>
-                                <ul class="submenu collapse">
-                                    <li>
-                                        <a href="gallery.html">
-                                            <span class="sidebar-text">Slider</span>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </li>
+                       
                 </ul>
             </div>
 

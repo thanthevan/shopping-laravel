@@ -16,7 +16,7 @@
             <div class="m-t-10 m-b-10 no-print"> 
                 
                 <button type="button" class="btn btn-white m-r-10 m-b-10" onclick="window.print();"><i class="fa fa-print m-r-10"></i>In hóa đơn</button>               
-                <button type="button" class="btn btn-white m-r-10 m-b-10"><i class="fa fa-envelope m-r-10"></i> Gửi qua email</button>
+               {{--  <button type="button" class="btn btn-white m-r-10 m-b-10"><i class="fa fa-envelope m-r-10"></i> Gửi qua email</button> --}}
             </div>
 
 
@@ -54,7 +54,7 @@
                                     <div class="row">
                                         <div class="col-md-12 m-t-20 m-b-20">
                                             <p><strong>Ngày đặt hàng: </strong> {{$order->created}}</p>
-                                            <p><strong>Ngày thanh toán: </strong>{{$order->updated}}</p>
+                                            
                                             
                                         </div>
                                     </div>

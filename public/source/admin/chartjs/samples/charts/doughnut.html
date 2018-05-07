@@ -1,0 +1,146 @@
+<script>
+			var randomScalingFactor = function() {
+			return Math.round(Math.random() * 100);
+		};
+
+		var config2 = {
+			type: 'doughnut',
+			data: {
+				datasets: [{
+					data: [
+						randomScalingFactor(),
+						randomScalingFactor(),
+						randomScalingFactor(),
+						randomScalingFactor(),
+						randomScalingFactor(),
+					],
+					backgroundColor: [
+						window.chartColors.red,
+						window.chartColors.orange,
+						window.chartColors.yellow,
+						window.chartColors.green,
+						window.chartColors.blue,
+					],
+					label: 'Dataset 1'
+				}],
+				labels: [
+					'Red',
+					'Orange',
+					'Yellow',
+					'Green',
+					'Blue'
+				]
+			},
+			options: {
+				responsive: true,
+				legend: {
+					position: 'top',
+				},
+				title: {
+					display: true,
+					text: 'Chart.js Doughnut Chart'
+				},
+				animation: {
+					animateScale: true,
+					animateRotate: true
+				}
+			}
+		};
+		var config1 = {
+			type: 'line',
+			data: {
+				labels: ['Thứ 2', 'Thứ 3', 'Thứ 4', 'Thứ 5', 'Thứ 6', 'Thứ 7', 'Chủ nhật'],
+				datasets: [{
+					label: 'Doanh thu',
+					data: [
+						1000000,2000000,3000000,4000000,1500000,2000000
+					],
+					backgroundColor: window.chartColors.red,
+					borderColor: window.chartColors.red,
+					fill: false,
+					borderDash: [5, 5],
+					pointRadius: 8,
+					pointHoverRadius: 10,
+				}]
+			},
+			options: {
+				tooltips: {
+        callbacks: {
+            label: function(tooltipItem, data) {
+                return  Number(tooltipItem.yLabel).toFixed(0).replace(/./g, function(c, i, a) {
+                    return i > 0 && c !== "." && (a.length - i) % 3 === 0 ? "." + c : c;
+                }) +" vnđ";
+            }
+        }
+    },
+				responsive: true,
+				legend: {
+					position: 'bottom',
+				},
+				hover: {
+					mode: 'index'
+				},
+				scales: {
+					xAxes: [{
+						display: true,
+						scaleLabel: {
+							display: true,
+							labelString: 'Month'
+						}
+					}],
+					yAxes: [{
+						display: true,
+						scaleLabel: {
+							display: true,
+							labelString: ''
+						},
+						 ticks: {
+                    beginAtZero:true,
+                    callback: function(value, index, values) {
+                        return  number_format(value) + " vnđ";
+                    }
+                }
+						 
+						
+					}]
+				},
+				title: {
+					display: true,
+					text: 'Doanh thu theo tuần 1 tháng 5'
+				}
+			}
+		};
+
+		window.onload = function() {
+			var ctx = document.getElementById('canvas').getContext('2d');
+			window.myLine = new Chart(ctx, config1);
+
+			var ctx = document.getElementById('chart-area').getContext('2d');
+			window.myDoughnut = new Chart(ctx, config2);
+		};
+
+		function number_format(number, decimals, dec_point, thousands_sep) {
+// *     example: number_format(1234.56, 2, ',', ' ');
+// *     return: '1 234,56'
+    number = (number + '').replace('.', '').replace(' ', '');
+    var n = !isFinite(+number) ? 0 : +number,
+            prec = !isFinite(+decimals) ? 0 : Math.abs(decimals),
+            sep = (typeof thousands_sep === 'undefined') ? '.' : thousands_sep,
+            dec = (typeof dec_point === 'undefined') ? '.' : dec_point,
+            s = '',
+            toFixedFix = function (n, prec) {
+                var k = Math.pow(10, prec);
+                return '' + Math.round(n * k) / k;
+            };
+    // Fix for IE parseFloat(0.55).toFixed(0) = 0;
+    s = (prec ? toFixedFix(n, prec) : '' + Math.round(n)).split('.');
+    if (s[0].length > 3) {
+        s[0] = s[0].replace(/\B(?=(?:\d{3})+(?!\d))/g, sep);
+    }
+    if ((s[1] || '').length < prec) {
+        s[1] = s[1] || '';
+        s[1] += new Array(prec - s[1].length + 1).join('0');
+    }
+    return s.join(dec);
+}
+	</script>

@@ -26,7 +26,7 @@ class ProductRequest extends FormRequest
 
         $photos = count($this->file('file'));
         foreach(range(0, $photos) as $index) {
-            $rules['file.' . $index] = 'required|image|mimes:jpeg,jpg,gif,png|max:8024';
+            $rules['file.' . $index] = 'required|image|mimes:jpeg,jpg,gif,png|max:14424';
         }
  
      

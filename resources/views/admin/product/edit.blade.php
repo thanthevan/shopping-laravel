@@ -180,6 +180,10 @@
                                              <input type="radio" id="test2" name="radio-group"  value="0" {{$pd->status==0?'checked':''}}>
                                              <label for="test2">Offline</label>
                                           </div>
+                                          <div class="col-md-3 ">
+                                             <input type="radio" id="test5" name="radio-group"  value="2" {{$pd->status==2?'checked':''}} >
+                                             <label for="test5">New</label>
+                                          </div>
                                           </div>
                                        </div>
                                     </div>
@@ -194,7 +198,10 @@
                                     <label class="  col-sm-2  ">Mô tả <span class="asterisk">*</span>
                                     </label>
                                     <div class=" col-sm-10">
-                                       <textarea rows="6" class="form-control" name="content" placeholder="Mô tả" required>{{$pd->describe}}</textarea>
+                                       <textarea rows="6" class="form-control" id="editor" name="content" placeholder="Mô tả" required>
+                                        @php
+                                          echo  html_entity_decode($pd->describe,ENT_QUOTES);
+                                       @endphp</textarea>
                                     </div>
                                  </div>
                                  <div class="form-group">

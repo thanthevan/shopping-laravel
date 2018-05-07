@@ -1,14 +1,17 @@
  <header class="navbar navbar-sticky">
       <!-- Search-->
       <form class="site-search" method="get">
-        <input type="text" name="site_search" placeholder="Tìm thương hiệu, sản phẩm ...">
+        <input type="text" name="site_search" id ="site_search" placeholder="Tìm thương hiệu, sản phẩm ...">
         <div class="search-tools"><span class="clear-search">Xóa</span><span class="close-search"><i class="icon-cross"></i></span></div>
+        <div class="result_search">
+          
+        </div>
       </form>
       <div class="site-branding">
-        <div class="inner">
-          <!-- Off-Canvas Toggle (#shop-categories)--><a class="offcanvas-toggle cats-toggle" href="#shop-categories" data-toggle="offcanvas"></a>
-          <!-- Off-Canvas Toggle (#mobile-menu)--><a class="offcanvas-toggle menu-toggle" href="#mobile-menu" data-toggle="offcanvas"></a>
-          <!-- Site Logo--><a class="site-logo" href="{{ route('home') }}"><img src="public/source/page/img/logo/logo.png" alt="Unishop"></a>
+        <div class="inner" style="margin-left: 74px;">
+         {{--  <a class="offcanvas-toggle cats-toggle" href="#shop-categories" ></a>
+       <a class="offcanvas-toggle menu-toggle" href="#mobile-menu" data-toggle="offcanvas"></a> --}}
+          <!-- Site Logo--><a class="site-logo"  href="{{ route('home') }}"><img src="public/source/page/img/logo/logo.png" alt="Unishop"></a>
         </div>
       </div>
       @php
@@ -22,7 +25,7 @@
           <?php
 use App\Category;
 use Cart as CART;
-$category = Category::all();
+$category = Category::orderBy('name' ,'ASC')->get();
 ?>
 
           <li class="has-megamenu  {{ $active==='san-pham'?'active':''}}"><a href=" {{ route('product') }}"><span>Sản phẩm</span></a>
@@ -47,7 +50,24 @@ $category = Category::all();
                 @endforeach
               </li>
                @endif
+
                @endforeach
+                <li>
+                <section class="promo-box" style="background-image: url(public/source/page/img/banners/02.jpg);"><span class="overlay-dark" style="opacity: .4;"></span>
+                  <div class="promo-box-content text-center padding-top-2x padding-bottom-2x">
+                    <h4 class="text-light text-thin text-shadow">Khuyễn mãi</h4>
+                    <h3 class="text-bold text-light text-shadow">Giảm giá ưu đãi</h3><a class="btn btn-sm btn-primary" href="{{ route('typeproduct',['alias'=>'sale']) }}">Xem ngay</a>
+                  </div>
+                </section>
+              </li>
+              <li>
+                <section class="promo-box" style="background-image: url(public/source/page/img/banners/03.jpg);"><span class="overlay-dark" style="opacity: .4;"></span>
+                  <div class="promo-box-content text-center padding-top-2x padding-bottom-2x">
+                    <h4 class="text-light text-thin text-shadow">Sản phẩm</h4>
+                    <h3 class="text-bold text-light text-shadow">Mới đến bất ngờ</h3><a class="btn btn-sm btn-primary" href="{{ route('typeproduct',['alias'=>'new']) }}">Xem ngay</a>
+                  </div>
+                </section>
+              </li>
             </ul>
           </li>
           <li class="{{ $active==='tin-tuc'?'active':''}}"><a href="{{ route('blog') }}"><span>Tin tức/Blog</span></a>
@@ -55,9 +75,9 @@ $category = Category::all();
           <li class="{{ $active==='gioi-thieu'?'active':''}}"><a href="#"><span>Giới thiệu</span></a>
             <ul class="sub-menu">
                 <li><a href="{{ route('info') }}">Về Chúng tôi</a></li>
-              <li ><a href="{{ route('rules') }}"><span>Chính sách mua hàng</span></a>
+              
               </li>
-              <li ><a href="{{ route('support') }}"><span>Hướng dẫn mua hàng</span></a></li>
+              <li ><a href="{{ route('support') }}"><span>Hình thức thanh toán</span></a></li>
               </ul>
           </li>
           <li class="{{ $active==='lien-he'?'active':''}}"><a href="{{ route('contact') }}"><span>Liên hệ</span></a></li>
@@ -122,7 +142,7 @@ $category = Category::all();
                 </div>
                 <div class="toolbar-dropdown-group tt2">
                   <div class="column"><a class="btn btn-sm btn-block btn-secondary" href="{{ route('cart-list') }}">Xem giỏ hàng</a></div>
-                  <div class="column"><a class="btn btn-sm btn-block btn-success" href="{{ route('getcheckout') }}">Thanh toán</a></div>
+                  <div class="column"><a class="btn btn-sm btn-block btn-success" href="{{ route('getcheckout') }}">Đặt hàng</a></div>
                 </div>
 
               </div>

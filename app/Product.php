@@ -38,4 +38,16 @@ class Product extends Model
     {
        return $this->hasMany('App\FeedbackProduct','product_id','id');
     }
+
+    public function countOrder($id)
+    {
+        return OrderDetail::where('product_id','=',$id)->where('status','=',1)->join('order','order.id','=','orderdetail.order_id')->sum('amount');
+    }
+    public function catename($id)
+    {
+       $cateid = Product::find($id)->category_id;
+       $catename=Category::find($cateid)->name;
+       return $catename;
+    }
+    
 }

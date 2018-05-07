@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Order;
 use App\OrderDetail;
 use App\User;
+use Auth;
 class OrderController extends Controller
 {
     /**
@@ -16,7 +17,7 @@ class OrderController extends Controller
      */
     public function index()
     {
-        $orders = Order::paginate(3); 
+        $orders = Order::orderBy('created' ,'DESC')->paginate(10); 
         return view('admin.order.index',compact('orders'));
     } 
 
@@ -86,8 +87,9 @@ class OrderController extends Controller
        date_default_timezone_set('Asia/Ho_Chi_Minh');
     
         $order = Order::find($id);
+        $order->create_by=Auth::guard('admin')->user()->id;
         $order->status =$request->status;
-        $order->updated= date('Y/m/d');
+        $order->updated= date("Y/m/d H:i:s");
         if($order->save())
         {
          return redirect()->back()->with(['notify'=>'success','mss'=>"Xác thực thành công"]);

@@ -26,17 +26,20 @@
 	</div>
 	<!-- Page Content-->
 	<div class="container padding-bottom-3x mb-2">
-		<div class="row">
+		<div class="row"> 
 			<div class="col-md-6">
 				<form class="login-box" method="post" action="{{ route('login-us') }}">
 					{{csrf_field()}}
-					<div class="row margin-bottom-1x">
+					{{-- <div class="row margin-bottom-1x">
 						<div class="col-xl-6 col-md-8 col-sm-6"><a class="btn btn-sm btn-block facebook-btn" href="#"><i class="socicon-facebook"></i>&nbsp;Đăng nhập bằng Facebook</a></div>
 						<div class="col-xl-6 col-md-8 col-sm-6"><a class="btn btn-sm btn-block google-btn" href="#"><i class="socicon-googleplus"></i>&nbsp;Đăng nhập bằng Google+</a></div>
-					</div> 
+					</div>  --}}
 					<h4 class="margin-bottom-1x">Đăng nhập</h4>
 					@if (session('msg'))
 					<div class="alert alert-danger alert-dismissible fade show text-center margin-bottom-1x"><span class="alert-close" data-dismiss="alert"></span><i class="icon-ban"></i>&nbsp;&nbsp;<strong>Thông báo:</strong> {{session('msg')}}</div>
+
+					@elseif(session('ms'))
+						<div class="alert alert-success alert-dismissible fade show text-center margin-bottom-1x"><span class="alert-close" data-dismiss="alert"></span><i class="icon-check"></i>&nbsp;&nbsp;<strong>Thông báo:</strong> {{session('ms')}}</div>
 					@endif 
 					<div class="form-group input-group">
 						<input class="form-control" name="email" type="email" placeholder="Email" value="" required><span class="input-group-addon"><i class="icon-mail"></i></span>
@@ -65,44 +68,63 @@
 				<div class="padding-top-3x hidden-md-up"></div>
 				<h3 class="margin-bottom-1x">Không có tài khoản? Đăng ký</h3>
 				<p>Đăng ký làm thành viên để nhận nhiều ưu đãi hơn!</p>
-				<form class="row" method="post">
+				<form class="row" method="post" action="{{ route('register-us') }}">
+						{{csrf_field()}}
 					<div class="col-sm-6">
 						<div class="form-group">
 							<label for="reg-fn">Họ và tên</label>
-							<input class="form-control" type="text" id="reg-fn" required>
+							<input class="form-control" type="text" name="nameres" required>
+							 @if( count($errors) > 0 )
+                          <span style="color: red">{{$errors->first('nameres')}}</span>
+                          @endif
 						</div>
 					</div>
 					<div class="col-sm-6">
 						<div class="form-group">
 							<label for="reg-email">E-mail</label>
-							<input class="form-control" type="email" id="reg-email" required>
+							<input class="form-control" type="email" name="emailres" required>
+							 @if( count($errors) > 0 )
+                          <span style="color: red">{{$errors->first('emailres')}}</span>
+                          @endif
 						</div>
 					</div>
 					<div class="col-sm-6">
 						<div class="form-group">
 							<label for="reg-phone">Số điện thoại</label>
-							<input class="form-control" type="text" id="reg-phone" required>
+							<input class="form-control" type="text" name="phoneres" required>
+							 @if( count($errors) > 0 )
+                          <span style="color: red">{{$errors->first('phoneres')}}</span>
+                          @endif
 						</div>
 					</div>
 					<div class="col-sm-6">
 						<div class="form-group">
 							<label for="reg-address">Địa chỉ</label>
-							<input class="form-control" type="text" id="reg-address" required>
+							<input class="form-control" type="text" name="addressres" required>
+							 @if( count($errors) > 0 )
+                          <span style="color: red">{{$errors->first('addressres')}}</span>
+                          @endif
 						</div>
 					</div>
 					<div class="col-sm-6">
 						<div class="form-group">
 							<label for="reg-pass">Mật khẩu</label>
-							<input class="form-control" type="password" id="reg-pass" required>
+							<input class="form-control" type="password" name="passwordres" required>
+							@if( count($errors) > 0 )
+                          <span style="color: red">{{$errors->first('passwordres')}}</span>
+                          @endif
 						</div>
 					</div>
 					<div class="col-sm-6">
 						<div class="form-group">
 							<label for="reg-pass-confirm">Nhập lại mật khẩu</label>
-							<input class="form-control" type="password" id="reg-pass-confirm" required>
+							<input class="form-control" type="password" name="repassword" required>
+							@if( count($errors) > 0 )
+                          <span style="color: red">{{$errors->first('repassword')}}</span>
+                          @endif
 						</div>
 					</div>
-					<div class="g-recaptcha"  data-sitekey="6LdqnUsUAAAAAG_dp_iwv2VFOQgABrEHFl4tUPgJ"></div>
+				
 					<div class="col-12 text-center text-sm-right">
 						<button class="btn btn-primary margin-bottom-none" type="submit">Đăng ký</button>
 					</div>

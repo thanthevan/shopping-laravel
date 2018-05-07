@@ -15,7 +15,7 @@ class CategoryController extends Controller
      */ 
     public function index()
     {
-        $category=Category::all();
+        $category=Category::orderBy('name' ,'ASC')->get();
         return view('admin.category.product.index',compact('category'));
     }
 
@@ -102,12 +102,13 @@ class CategoryController extends Controller
         $category->name=$request->category_name;
         $category->alias=$alias =vn_to_str($request->category_name);
         $category->parent_id=$request->parent_id;
-        if( $category->save())
-        {
-           return redirect( route('category.index',['notify'=>'success','mss'=>"Cập nhật thành công"]));
-        }else{
-           return redirect( route('category.index',['notify'=>'error','mss'=>"Cập nhật thất bại"])); 
-        }
+       if($category->save())
+       {
+        return redirect()->back()->with(['notify'=>'success','mss'=>"Sửa thành công"]);
+       }else
+       {
+         return redirect()->back()->with(['error'=>'success','mss'=>"Sửa thất bại"]);
+       }
     }
 
     /**

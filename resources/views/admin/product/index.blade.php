@@ -3,6 +3,7 @@
 <title>Unishop-Sản phẩm</title>
 <meta content="" name="description" />
 <link rel="stylesheet" href="public/source/admin/plugins/dropzone/dropzone.css">
+{{-- <link rel="stylesheet" href="public/source/admin/plugins/cke-editor/css/samples.css"> --}}
 <meta content="" name="description" />
 <style type="text/css">
 .wait{
@@ -86,13 +87,10 @@
             {{ "<script> alert(".$errors->first('file').")</script>"}}
           @endif
       </div>
-      <div class="pull-right">
+    {{--   <div class="pull-right">
                 <a href="javascript:void(0)" onclick="return confirm('Bạn muốn xóa những sản phẩm đã chọn ?');" class="btn btn-danger m-t-10"><i class="fa fa-times-circle p-r-10"></i>Xóa sản phẩm</a>
-      </div>
+      </div> --}}
 
-      <div class="pull-right">
-         <a href="#modal-excel" data-toggle="modal" class="btn btn-success m-t-10" style="margin-right: 5px;"><i class="fa fa-plus p-r-10"></i>Thêm bằng file excel</a>
-      </div>
       <div class="pull-right" style="margin-right: 5px;">
          <a data-toggle="modal" href='#modal-id' class="btn btn-success m-t-10"><i class="fa fa-plus p-r-10"></i>Thêm mới</a>
       </div>
@@ -105,7 +103,7 @@
             <div class="panel-body">
                <div class="row">
                   <div class="col-md-12 col-sm-12 col-xs-12 table-responsive">
-                     <div class="head_table">
+                    {{--  <div class="head_table">
                         <div class="row">
                          <div  class="col-md-2">
                             <select class="form-control" title="Chọn danh mục" name="category_product" required>
@@ -114,25 +112,25 @@
                                  category($category,0,null,0);
                                @endphp
                            </select>
-                         </div>
-                         <div class="col-md-2">
+                         </div> --}}
+                        {{--  <div class="col-md-2">
                            <div id="posts-table_filter" class="dataTables_filter"><label><input type="search" class="form-control" aria-controls="posts-table" placeholder="Tìm kiếm sản phẩm..."></label>
                            </div>
-                        </div>
-                        </div>
-                    </div>
+                        </div> --}}
+                   {{--      </div>
+                    </div> --}}
 
                      <table id="products-table" class="table table-tools table-hover ">
                         <thead>
                            <tr>
-                              <th style="min-width:50px">
+                             {{--  <th style="min-width:50px">
                                  <div class="checkbox" style="min-height: 0px;padding-left: 0px;margin-top: 0px;margin-bottom: 0px;">
                                     <label>
                                      <input type="checkbox" class="check_all">
                                     <span class="cr"><i class="cr-icon glyphicon glyphicon-ok"></i></span>
                                     </label>
                                  </div>
-                              </th>
+                              </th> --}}
                               <th style="min-width:70px"><strong>ID</strong>
                               <th><strong>Tên sản phẩm</strong>
                               </th>
@@ -156,14 +154,14 @@
                            @isset ($products)
                            @foreach ($products as $product)
                            <tr>
-                              <td>
+                              {{-- <td>
                                   <div class="checkbox" style="min-height: 0px;padding-left: 0px;margin-top: 0px;margin-bottom: 0px;">
                                     <label>
                                      <input type="checkbox" value="{{$product->product_id}}">
                                     <span class="cr"><i class="cr-icon glyphicon glyphicon-ok"></i></span>
                                     </label>
                                  </div>
-                              </td>
+                              </td> --}}
                               <td>{{$product->id}}</td>
                               <td>{{$product->product_name}}</td>
                               <td>{{category_name($product->category_id)}}</td>
@@ -174,19 +172,19 @@
                                  {{$product->amount}}
                               </td>
                               <td class="text-center">
-                                 @if($product->status==1)
+                                 @if($product->status>0)
                                  <span class="label label-success w-300">Online</span>
-                                 @else
+                                 @elseif($product->status==0)
                                  <span class="label label-danger w-300">Offline</span>
                                  @endif
                               </td>
                               <td class="text-center " >
-                                 <button  class="edit btn btn-sm btn-info info" data-id="{{$product->id}}"><i class="fa fa-eye"></i> Chi tiết</button>
-                                 <button href="javascript:void(0)" class="edit btn btn-sm btn-warning update" data-id="{{$product->id}}"><i class="fa fa-pencil"></i> Sửa</button>
+                                 <button  class="edit btn btn-sm btn-info info" data-id="{{$product->id}}"><i class="fa fa-eye"></i></button>
+                                 <button href="javascript:void(0)" class="edit btn btn-sm btn-warning update" data-id="{{$product->id}}"><i class="fa fa-pencil"></i></button>
                                   <form style="display: inline-block;" action="{{route('product.destroy',['id'=>$product->id])}}" method="post">
                                        {{csrf_field()}}
                                        {{method_field('DELETE')}}
-                                        <button type="submit" title="Xóa" onclick="return confirm('Xóa sản phẩm này ?'); " class="delete btn btn-sm btn-danger"><i class="fa fa-times-circle"></i> Xóa</button></form>
+                                        <button type="submit" title="Xóa" onclick="return confirm('Xóa sản phẩm này ?'); " class="delete btn btn-sm btn-danger"><i class="fa fa-times-circle"></i></button></form>
                               </td>
                            </tr>
                            @endforeach
@@ -200,23 +198,6 @@
          </div>
       </div>
    </div>
-</div>
-<div class="modal fade" id="modal-excel">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                <h4 class="modal-title">Thêm sản phẩm</h4>
-            </div>
-            <div class="modal-body">
-
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Save changes</button>
-            </div>
-        </div>
-    </div>
 </div>
 <div class="modal  fade" id="modal-update">
    <div class="modal-dialog modal-lg">
@@ -357,6 +338,10 @@
                                              <input type="radio" id="test4" name="radio-group"  value="0">
                                              <label for="test4">Offline</label>
                                           </div>
+                                          <div class="col-md-3 ">
+                                             <input type="radio" id="test5" name="radio-group"  value="2">
+                                             <label for="test5">New</label>
+                                          </div>
                                        </div>
                                     </div>
                                  </div>
@@ -371,7 +356,8 @@
                                  <label class="  col-sm-2  ">Mô tả <span class="asterisk">*</span>
                                  </label>
                                  <div class=" col-sm-10">
-                                    <textarea rows="6" class="form-control" name="content" placeholder="Mô tả" required></textarea>
+                                    <textarea id="editor" rows="6" class="form-control" name="content" placeholder="Mô tả" required></textarea>
+    
                                  </div>
                               </div>
                               <div class="form-group">
@@ -430,6 +416,15 @@
 @endsection
 @section('select')
 <script src="public/source/admin/plugins/bootstrap-select/bootstrap-select.js"></script>
+
+  <script src="public/source/admin/plugins/cke-editor/js/ckeditor.js"></script>
+  <script src="public/source/admin/plugins/cke-editor/js/sample.js"></script>
+  <script type="text/javascript">
+    initSample();
+
+    
+  </script>
+
 @endsection
 @section('script-upload')
 <script>

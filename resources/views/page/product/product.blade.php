@@ -16,7 +16,7 @@
           </div>
           <div class="column">
             <ul class="breadcrumbs">
-              <li><a href="index.html">Home</a>
+              <li><a href="{{ route('home') }}">Trang chủ</a>
               </li>
               <li class="separator">&nbsp;</li>
               <li>Danh sách các sản phẩm</li>
@@ -46,7 +46,11 @@
               @foreach ($products as $product)
               <div class="grid-item">
                 <div class="product-card">
-                  <div class="product-badge text-danger">50% Off</div>
+                  @if($product->promo_price!=0)
+                    <div class="product-badge text-danger">Giảm giá: {{(round(100*($product->unit_price-$product->promo_price)/$product->unit_price)) }}%</div>
+                    @elseif($product->status==2)
+                     <div class="product-badge text-danger">Mới</div>
+                     @endif
                   <div class="rating-stars">
                     @php
                       $vote=$product->vote;
@@ -58,11 +62,16 @@
                   <a class="product-thumb" href="{{ route('detailproduct',['alias'=>$product->alias,'id'=>$product->id]) }}"><img src="public/uploads/product/{{$product->image_product[0]['image']}}" alt="Product"></a>
                   <h3 class="product-title"><a href="{{ route('detailproduct',['alias'=>$product->alias,'id'=>$product->id]) }}">{{$product->product_name}}</a></h3>
                   <h4 class="product-price">
-                    {{$product->promo_price!=0?"<del>".number_format($product->unit_price)." VNĐ</del>".number_format($product->promo_price)." VNĐ":number_format($product->unit_price)." VNĐ"}}
+                    @if($product->promo_price!=0) 
+                    <del>{{number_format($product->unit_price)}} VNĐ</del> 
+                    {{number_format($product->promo_price)." VNĐ"}}
+                    @else
+                    {{number_format($product->unit_price)." VNĐ"}}
+                    @endif
                   </h4>
                   <div class="product-buttons">
                     <button class="btn btn-outline-secondary btn-sm btn-wishlist btn-quickview clearfix-sm-hidden" data-id="{{$product->id}}" data-toggle="tooltip" title="Xem nhanh"><i class="icon-search"></i></button>
-                    <button class="  btn btn-outline-primary btn-sm" data-toast data-toast-type="success" data-toast-position="topRight" data-toast-icon="icon-circle-check" data-toast-title="{{$product->product_name}}" data-toast-message="đã thêm vào giỏ hàng!" data-id="{{$product->id }}">Thêm vào giỏ hàng</button>
+                  {{--   <button class="  btn btn-outline-primary btn-sm" data-toast data-toast-type="success" data-toast-position="topRight" data-toast-icon="icon-circle-check" data-toast-title="{{$product->product_name}}" data-toast-message="đã thêm vào giỏ hàng!" data-id="{{$product->id }}">Thêm vào giỏ hàng</button> --}}
                   </div>
                 </div>
               </div>
@@ -92,14 +101,14 @@
               $alias= $category["alias"];
               @endphp 
                @if ($category['parent_id'] ==0)
-                  <li class="has-children expanded"><a href="#">{{$ten}}</a><span>(1138)</span>
+                  <li class="has-children expanded"><a href="#">{{$ten}}</a>
                     @php 
                 unset($categories[$key]); 
                 @endphp
                 @foreach ($categories as $k => $item)
                     <ul>
                        @if($item['parent_id']==$id)
-                      <li class=""><a href="{{ route('catebyname',['parent_alias'=>$alias,'alias' =>$item['alias'] ]) }}">{{$item['name']}}</a><span>(508)</span></li>
+                      <li class=""><a href="{{ route('catebyname',['parent_alias'=>$alias,'alias' =>$item['alias'] ]) }}">{{$item['name']}}</a></li>
                        @endif
                     </ul>
                    @endforeach    
@@ -111,7 +120,8 @@
               <!-- Widget Price Range-->
               <section class="widget widget-categories">
                 <h3 class="widget-title">Lọc theo đơn giá</h3>
-                <form class="price-range-slider" method="post" data-start-min="100000" data-start-max="500000" data-min="0" data-max="1500000)" data-step="10000">
+                <form class="price-range-slider" method="post"  action="{{ route('fill-price') }}" data-start-min="100000" data-start-max="500000" data-min="0" data-max="1500000)" data-step="10000">
+                    {{csrf_field()}}
                   <div class="ui-range-slider"></div>
                   <footer class="ui-range-slider-footer">
                     <div class="column">
@@ -153,12 +163,8 @@
                 @endforeach
               </section>
               <!-- Promo Banner-->
-              <section class="promo-box" style="background-image: url(img/banners/02.jpg);">
-                <!-- Choose between .overlay-dark (#000) or .overlay-light (#fff) with default opacity of 50%. You can overrride default color and opacity values via 'style' attribute.--><span class="overlay-dark" style="opacity: .45;"></span>
-                <div class="promo-box-content text-center padding-top-3x padding-bottom-2x">
-                  <h4 class="text-light text-thin text-shadow">New Collection of</h4>
-                  <h3 class="text-bold text-light text-shadow">Sunglassess</h3><a class="btn btn-sm btn-primary" href="#">Shop Now</a>
-                </div>
+              <section class="promo-box" >
+                <div class="fb-page" data-href="https://www.facebook.com/Unishop-957109281123183/"  data-width="350" data-height="240" data-small-header="false" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true"><blockquote cite="https://www.facebook.com/Unishop-957109281123183/" class="fb-xfbml-parse-ignore"><a href="https://www.facebook.com/Unishop-957109281123183/">Unishop</a></blockquote></div>
               </section>
             </aside>
           </div>

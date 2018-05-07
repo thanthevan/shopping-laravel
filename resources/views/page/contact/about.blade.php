@@ -28,68 +28,41 @@
       </div>
       <!-- Page Content-->
       <div class="container padding-bottom-2x mb-2">
-        <div class="row align-items-center padding-bottom-2x">
-          <div class="col-md-5"><img class="d-block w-270 m-auto" src="img/features/01.jpg" alt="Online Shopping"></div>
-          <div class="col-md-7 text-md-left text-center">
-            <div class="mt-30 hidden-md-up"></div>
-            <h2>Search, Select, Buy Online.</h2>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam id purus at risus pellentesque faucibus a quis eros. In eu fermentum leo. Integer ut eros lacus. Proin ut accumsan leo. Morbi vitae est eget dolor consequat aliquam eget quis dolor. Mauris rutrum fermentum erat, at euismod lorem pharetra nec. Duis erat lectus, ultrices euismod sagittis at, pharetra eu nisl. Phasellus id ante at velit tincidunt hendrerit. Aenean dolor dolor, tristique nec placerat nec.</p><a class="text-medium text-decoration-none" href="shop-grid-ls.html">View Products&nbsp;<i class="icon-arrow-right"></i></a>
-          </div>
+       <div class="container clearfix">
+      <p><span style="font-size:16px;">Cơ sở sản quần áo <strong>Unishop </strong>được thành lập năm 2017. Chuyên sản xuất các sản phẩm quần áo ... từ các chất liệu trong nước và nhập khẩu. Với phương châm sự hài lòng của khách hàng là thành công của chúng tôi! Mặc dù thành lập chưa lâu nhưng cơ sở chúng tôi đã tạo được tin cậy của khách hàng, đặc biệt là với khách hàng công sở.</span></p>
+
+<p style="text-align: justify;"><span style="font-size:16px;">Hiện nay bán hàng online rất phát triển ở Việt Nam, bên cạnh những gian hàng uy tín thì cũng có khá nhiều những gian hàng hoạt động có nhiều hình thức lừa đảo khách hàng. <a href="{{ route('home') }}"><strong>Unhishop.com</strong></a>thuộc quyền sở hữu của công ty Neo một công ty hoạt động trong lĩnh vực sản xuất quần áo từ lâu, luôn đưa lợi ích&nbsp;của khách hàng nên hàng đầu. </span></p>
+
+<p style="text-align: justify;"><span style="font-size:16px;">Với các sản phẩm nổi bật như. Áo sơ mi, len nam nữ, quần jeans nam nữ ....&nbsp;Chúng tôi là một trong số ít&nbsp;những doanh nghiệp sản xuất sản phẩm và phân phối trực tiếp&nbsp;đến tận tay người tiêu dùng không thông qua bất kỳ khâu trung gian nào, vì vậy giá thành của chúng tôi <strong>luôn là rẻ nhất</strong>, có những sản phẩm rẻ đến bất ngờ!</span></p>
+
+<p style="text-align: justify;">&nbsp;</p>
+
+<p style="text-align: justify;"><span style="font-size:16px;"><strong>Hiện hệ thống của chúng tôi có 4 cửa hàng tại Hà Nội.</strong></span></p>
+
+<ul>
+  <li style="text-align: justify;">
+  <p><span style="font-size:16px;"><span style="line-height: 16.1px;">Showroom 1 :&nbsp;</span><span style="line-height: 16.1px; text-align: justify;">158 Đội Cấn&nbsp;- Ba Đình - Hà Nội . Hotline </span>0997923887</span></p>
+  </li>
+  <li style="margin-bottom: 0.0001pt; line-height: 115%;">
+  <p><span style="font-size:16px;">Showroom 2 : <span style="line-height: 16.1px;">198A Nguyễn Trãi &nbsp;- Thanh Xuân - Hà Nội . Hotline&nbsp;0994428551</span></span></p>
+  </li>
+  <li style="margin-bottom: 0.0001pt; line-height: 115%;">
+  <p><span style="font-size:16px;">Showroom 3 : 208 Minh Khai - Hai Bà Trưng - Hà Nội . Hotline <span style="font-family: helvetica, arial, sans-serif; line-height: 15.36px; white-space: pre-wrap; background-color: rgb(254, 254, 254);">0996570813</span></span></p>
+  </li>
+  <li style="margin-bottom: 0.0001pt; text-align: justify; line-height: 115%;">
+  <p><span style="font-size:16px;">Showroom 4 : 141T Trương Định - Hai Bà Trưng - Hà Nội. Hotline 0994428560</span></p>
+  </li>
+</ul>
+
+<p style="text-align: justify;">&nbsp;</p>
+
+<p style="text-align: justify;"><span style="font-size:16px;">Với phương châm tạo thương hiệu bằng uy tín của khách hàng doanh nghiệp chúng tôi mong muốn được đồng hành cùng các bạn. Mong được sự ủng hộ từ các bạn</span></p>
+
+    </div>
+    <iframe  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3725.025124103681!2d105.84681731468166!3d20.991629986018516!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3135ac6c6784780d%3A0x9f3369b1574f2!2zMTQxIFRyxrDGoW5nIMSQ4buLbmgsIEhhaSBCw6AgVHLGsG5nLCBIw6AgTuG7mWksIFZp4buHdCBOYW0!5e0!3m2!1svi!2s!4v1523702400504" width="80%" height="600" frameborder="0" style="border:2px solid #606975;border-radius: 10px" allowfullscreen></iframe>
         </div>
-        <hr>
-        <div class="row align-items-center padding-top-2x padding-bottom-2x">
-          <div class="col-md-5 push-md-7"><img class="d-block w-270 m-auto" src="img/features/02.jpg" alt="Delivery"></div>
-          <div class="col-md-7 pull-md-5 text-md-left text-center">
-            <div class="mt-30 hidden-md-up"></div>
-            <h2>Fast Delivery Worldwide.</h2>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam id purus at risus pellentesque faucibus a quis eros. In eu fermentum leo. Integer ut eros lacus. Proin ut accumsan leo. Morbi vitae est eget dolor consequat aliquam eget quis dolor. Mauris rutrum fermentum erat, at euismod lorem pharetra nec. Duis erat lectus, ultrices euismod sagittis at, pharetra eu nisl. Phasellus id ante at velit tincidunt hendrerit. Aenean dolor dolor, tristique nec placerat nec.</p><a class="text-medium text-decoration-none" href="#">Shipping Details&nbsp;<i class="icon-arrow-right"></i></a>
-          </div>
-        </div>
-        <hr>
-        <div class="row align-items-center padding-top-2x padding-bottom-2x">
-          <div class="col-md-5"><img class="d-block w-270 m-auto" src="img/features/03.jpg" alt="Mobile App"></div>
-          <div class="col-md-7 text-md-left text-center">
-            <div class="mt-30 hidden-md-up"></div>
-            <h2>Great Mobile App. Shop On The Go.</h2>
-            <p class="mb-4">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam id purus at risus pellentesque faucibus a quis eros. In eu fermentum leo. Integer ut eros lacus. Proin ut accumsan leo. Morbi vitae est eget dolor consequat aliquam eget quis dolor.</p><a class="market-button apple-button" href="#"><span class="mb-subtitle">Download on the</span><span class="mb-title">App Store</span></a><a class="market-button google-button" href="#"><span class="mb-subtitle">Download on the</span><span class="mb-title">Google Play</span></a><a class="market-button windows-button" href="#"><span class="mb-subtitle">Download on the</span><span class="mb-title">Windows Store</span></a>
-          </div>
-        </div>
-        <hr>
-        <div class="row align-items-center padding-top-2x padding-bottom-2x">
-          <div class="col-md-5 push-md-7"><img class="d-block w-270 m-auto" src="img/features/04.jpg" alt="Delivery"></div>
-          <div class="col-md-7 pull-md-5 text-md-left text-center">
-            <div class="mt-30 hidden-md-up"></div>
-            <h2>Shop Offline. Cozy Outlet Stores.</h2>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam id purus at risus pellentesque faucibus a quis eros. In eu fermentum leo. Integer ut eros lacus. Proin ut accumsan leo. Morbi vitae est eget dolor consequat aliquam eget quis dolor. Mauris rutrum fermentum erat, at euismod lorem pharetra nec. Duis erat lectus, ultrices euismod sagittis at, pharetra eu nisl. Phasellus id ante at velit tincidunt hendrerit. Aenean dolor dolor, tristique nec placerat nec.</p><a class="text-medium text-decoration-none" href="contacts.html">See Outlet Stores&nbsp;<i class="icon-arrow-right"></i></a>
-          </div>
-        </div>
-        <hr>
-        <div class="text-center padding-top-3x mb-30">
-          <h2>Our Core Team</h2>
-          <p class="text-muted">People behind your awesome shopping experience.</p>
-        </div>
-        <div class="row">
-          <div class="col-md-3 col-sm-6 mb-30 text-center"><img class="d-block w-150 mx-auto img-thumbnail rounded-circle mb-2" src="img/team/01.jpg" alt="Team">
-            <h6>Grace Wright</h6>
-            <p class="text-muted mb-2">Founder, CEO</p>
-            <div class="social-bar"><a class="social-button shape-circle sb-facebook" href="#" data-toggle="tooltip" data-placement="top" title="Facebook"><i class="socicon-facebook"></i></a><a class="social-button shape-circle sb-twitter" href="#" data-toggle="tooltip" data-placement="top" title="Twitter"><i class="socicon-twitter"></i></a><a class="social-button shape-circle sb-google-plus" href="#" data-toggle="tooltip" data-placement="top" title="Google +"><i class="socicon-googleplus"></i></a></div>
-          </div>
-          <div class="col-md-3 col-sm-6 mb-30 text-center"><img class="d-block w-150 mx-auto img-thumbnail rounded-circle mb-2" src="img/team/02.jpg" alt="Team">
-            <h6>Taylor Jackson</h6>
-            <p class="text-muted mb-2">Financial Director</p>
-            <div class="social-bar"><a class="social-button shape-circle sb-skype" href="#" data-toggle="tooltip" data-placement="top" title="Skype"><i class="socicon-skype"></i></a><a class="social-button shape-circle sb-facebook" href="#" data-toggle="tooltip" data-placement="top" title="Facebook"><i class="socicon-facebook"></i></a><a class="social-button shape-circle sb-paypal" href="#" data-toggle="tooltip" data-placement="top" title="PayPal"><i class="socicon-paypal"></i></a></div>
-          </div>
-          <div class="col-md-3 col-sm-6 mb-30 text-center"><img class="d-block w-150 mx-auto img-thumbnail rounded-circle mb-2" src="img/team/03.jpg" alt="Team">
-            <h6>Quinton Cross</h6>
-            <p class="text-muted mb-2">Marketing Director</p>
-            <div class="social-bar"><a class="social-button shape-circle sb-twitter" href="#" data-toggle="tooltip" data-placement="top" title="Twitter"><i class="socicon-twitter"></i></a><a class="social-button shape-circle sb-google-plus" href="#" data-toggle="tooltip" data-placement="top" title="Google +"><i class="socicon-googleplus"></i></a><a class="social-button shape-circle sb-email" href="#" data-toggle="tooltip" data-placement="top" title="Email"><i class="socicon-mail"></i></a></div>
-          </div>
-          <div class="col-md-3 col-sm-6 mb-30 text-center"><img class="d-block w-150 mx-auto img-thumbnail rounded-circle mb-2" src="img/team/04.jpg" alt="Team">
-            <h6>Liana Mullen</h6>
-            <p class="text-muted mb-2">Lead Designer</p>
-            <div class="social-bar"><a class="social-button shape-circle sb-behance" href="#" data-toggle="tooltip" data-placement="top" title="Behance"><i class="socicon-behance"></i></a><a class="social-button shape-circle sb-dribbble" href="#" data-toggle="tooltip" data-placement="top" title="Dribbble"><i class="socicon-dribbble"></i></a><a class="social-button shape-circle sb-instagram" href="#" data-toggle="tooltip" data-placement="top" title="Instagram"><i class="socicon-instagram"></i></a></div>
-          </div>
-        </div>
+
       </div>
+
     </div>
 @endsection

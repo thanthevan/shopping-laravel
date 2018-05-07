@@ -145,11 +145,8 @@
                 </table>
               </section>
               <!-- Promo Banner-->
-              <section class="promo-box" style="background-image: url(img/banners/02.jpg);"><span class="overlay-dark" style="opacity: .4;"></span>
-                <div class="promo-box-content text-center padding-top-2x padding-bottom-2x">
-                  <h4 class="text-light text-thin text-shadow">New Collection of</h4>
-                  <h3 class="text-bold text-light text-shadow">Sunglasses</h3><a class="btn btn-outline-white btn-sm" href="shop-grid-ls.html">Shop Now</a>
-                </div>
+             <section class="promo-box" >
+                <div class="fb-page" data-href="https://www.facebook.com/Unishop-957109281123183/"  data-width="350" data-height="240" data-small-header="false" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true"><blockquote cite="https://www.facebook.com/Unishop-957109281123183/" class="fb-xfbml-parse-ignore"><a href="https://www.facebook.com/Unishop-957109281123183/">Unishop</a></blockquote></div>
               </section>
             </aside>
           </div>

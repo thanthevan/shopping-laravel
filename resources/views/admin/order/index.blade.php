@@ -10,7 +10,7 @@
         width: 84%;
     }
 </style>
-@endsection
+@endsection 
 @section('content')
 
   <div id="main-content">
@@ -22,12 +22,12 @@
             {{ "<script> alert(".$errors->first('file').")</script>"}}
           @endif
       </div>
-      <div class="pull-right">
+     {{--  <div class="pull-right">
                 <a href="javascript:void(0)" onclick="return confirm('Bạn muốn hủy những đơn hàng đã chọn ?');" class="btn btn-danger m-t-10"><i class="fa fa-times-circle p-r-10"></i>Hủy </a>
-      </div>
-      <div class="pull-right" style="margin-right: 5px;">
+      </div> --}}
+      {{-- <div class="pull-right" style="margin-right: 5px;">
          <a  href='javascript:void(0)' onclick="return confirm('Bạn muốn xác nhận thanh toán những đơn hàng đã chọn ?');"  class="btn btn-success m-t-10"><i class=" fa fa-check p-r-10"></i>Thanh toán</a>
-      </div>
+      </div> --}}
    </div>
    <div class="row">
 
@@ -48,24 +48,24 @@
                               
                            </select>
                          </div>
-                         <div class="col-md-2">
+                       {{--   <div class="col-md-2">
                            <div id="posts-table_filter" class="dataTables_filter"><label><input type="search" class="form-control" aria-controls="posts-table" placeholder="Tìm kiếm đơn hàng..."></label>
                            </div>
-                        </div>
+                        </div> --}}
                         </div>
                     </div>
 
                      <table id="orders-table" class="table table-tools table-hover ">
                         <thead>
                            <tr>
-                              <th style="min-width:50px">
+                              {{-- <th style="min-width:50px">
                                  <div class="checkbox" style="min-height: 0px;padding-left: 0px;margin-top: 0px;margin-bottom: 0px;">
                                     <label>
                                      <input type="checkbox" class="check_all">
                                     <span class="cr"><i class="cr-icon glyphicon glyphicon-ok"></i></span>
                                     </label>
                                  </div>
-                              </th>
+                              </th> --}}
                               <th ><strong>ID</strong>
                               <th style="text-align: center;">Tên khách hàng</th>
                               <th class="text-center"><strong>Email</strong>
@@ -80,6 +80,8 @@
                               </th>
                               <th class="text-center"><strong>Trạng thái</strong>
                               </th>
+                              <th class="text-center"><strong>Xác nhận bởi</strong>
+                              </th>
                               <th class="text-center"><strong>Thao tác</strong>
                               </th>
                            </tr>
@@ -88,18 +90,18 @@
                            @isset ($orders)
                            @foreach ($orders as $order)
                            <tr>
-                              <td>
+                              {{-- <td>
                                   <div class="checkbox" style="min-height: 0px;padding-left: 0px;margin-top: 0px;margin-bottom: 0px;">
                                     <label>
                                      <input type="checkbox" value="{{$order->id}}">
                                     <span class="cr"><i class="cr-icon glyphicon glyphicon-ok"></i></span>
                                     </label>
                                  </div>
-                              </td>
+                              </td> --}}
 
                               <td>{{$order->id}}</td>
 
-                              <td>{{$order->name}}</td>
+                              <td >{{$order->name}}</td>
                               <td>{{$order->email}}</td>
                               <td class="color-success" style="text-align: center;">
                                  {{$order->created}}
@@ -116,21 +118,44 @@
                                   <span class="label label-danger w-300">Đã hủy</span>
                                   @endif
                               </td>
+                              <td class="text-center">
+                                 @if($order->create_by==0)
+                                 <span class="label label-warning w-300">Chưa xác thực</span>
+                                 @elseif($order->create_by==-1)
+                                 <span class="label label-danger w-300">Hủy bởi người mua</span>
+                                 @elseif($order->create_by>0 && $order->status==1)
+                                  <span class="label label-success w-300">{{$order->nameAdmin($order->create_by)}}</span>
+                                  @elseif($order->create_by>0 && $order->status==2)
+                                  <span class="label label-danger w-300">{{$order->nameAdmin($order->create_by)}}</span>
+                                  @endif
+                              </td>
                               <td class="text-center " >
                                  @if($order->status==0)
-                                 <button  class="edit btn btn-sm btn-info info-order" data-id="{{$order->id}}"><i class="fa fa-eye"></i> Chi tiết</button>
+                                 <button title="xem"  class="edit btn btn-sm btn-info info-order" data-id="{{$order->id}}"><i class="fa fa-eye"></i></button>
                                  <form style="display: inline-block;" action="{{ route('order.update',['id'=>$order->id]) }}" method="post">
                                        {{csrf_field()}}
                                        {{method_field('PUT')}}
                                        <input type="hidden" name="status" value="1"> 
-                                        <button type="submit" title="Hủy" onclick="return confirm('Xác nhận thanh toán đơn hàng này ?'); " class="edit btn btn-sm btn-success"><i class="fa fa-check"></i> Thanh toán</button></form>
+                                        <button type="submit" title="Thanh toán" onclick="return confirm('Xác nhận thanh toán đơn hàng này ?'); " class="edit btn btn-sm btn-success"><i class="fa fa-check"></i></button></form>
                                   <form style="display: inline-block;" action="{{ route('order.update',['id'=>$order->id]) }}" method="post">
                                        {{csrf_field()}}
                                        {{method_field('PUT')}}
                                        <input type="hidden" name="status" value="2"> 
-                                        <button type="submit" title="Hủy" onclick="return confirm('Hủy đơn hàng này ?'); " class="delete btn btn-sm btn-danger"><i class="fa fa-times-circle"></i> Hủy</button></form>
+                                        <button type="submit" title="Hủy" onclick="return confirm('Hủy đơn hàng này ?'); " class="delete btn btn-sm btn-danger"><i class="fa fa-times-circle"></i></button></form>
+                                 @elseif($order->status==1)
+                                  <button  class="edit btn btn-sm btn-info info-order" data-id="{{$order->id}}" title="xem"><i class="fa fa-eye"></i></button>
+                                  <form style="display: inline-block;" action="{{ route('order.update',['id'=>$order->id]) }}" method="post">
+                                       {{csrf_field()}}
+                                       {{method_field('PUT')}}
+                                       <input type="hidden" name="status" value="2"> 
+                                        <button type="submit" title="Hủy" onclick="return confirm('Hủy đơn hàng này ?'); " class="delete btn btn-sm btn-danger"><i class="fa fa-times-circle"></i></button></form>
                                  @else
-                                  <button  class="edit btn btn-sm btn-info info-order" data-id="{{$order->id}}"><i class="fa fa-eye"></i> Chi tiết</button>
+                                   <button title="xem"  class="edit btn btn-sm btn-info info-order" data-id="{{$order->id}}"><i class="fa fa-eye"></i></button>
+                                 <form style="display: inline-block;" action="{{ route('order.update',['id'=>$order->id]) }}" method="post">
+                                       {{csrf_field()}}
+                                       {{method_field('PUT')}}
+                                       <input type="hidden" name="status" value="1"> 
+                                        <button type="submit" title="Thanh toán" onclick="return confirm('Xác nhận thanh toán đơn hàng này ?'); " class="edit btn btn-sm btn-success"><i class="fa fa-check"></i></button></form>
                                  @endif
                               </td>
                            </tr>

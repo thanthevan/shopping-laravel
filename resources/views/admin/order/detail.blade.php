@@ -188,8 +188,15 @@
                                              <div class="form-group">
                                                 <div class=" col-sm-4">Số lượng sản phẩm:
                                                 </div>
+                                                @php
+                                                  $s=0;
+                                                  foreach ($orderdetails as  $value) {
+                                                     $s+=$value->amount;
+                                                  }
+                                                @endphp
+                                        
                                                 <div class=" col-sm-5">
-                                                    <strong>4</strong>
+                                                    <strong>{{$s}}</strong>
                                                 </div>
                                             </div>
                                             <div class="form-group">
@@ -251,12 +258,14 @@
                                                     <strong>{{$order->payment}}</strong>
                                                 </div>
                                             </div>
-                                        
-                                            <div class="form-group m-t-60">
+                                        @if ($order->status!=2)
+                                          <div class="form-group m-t-60">
                                                 <div class="col-sm-8 col-sm-offset-4">
                                                     <a class="btn btn-block btn-primary" href="{{ route('invoice',['id'=>$order->id]) }}">Xem hóa đơn</a>
                                                 </div>
                                             </div>
+                                        @endif
+                                            
                                         </form>
                                     </div>
                                 </div>

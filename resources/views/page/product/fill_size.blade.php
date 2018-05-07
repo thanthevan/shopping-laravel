@@ -12,7 +12,11 @@
               @foreach ($products as $product)
               <div class="grid-item">
                 <div class="product-card">
-                  <div class="product-badge text-danger">50% Off</div>
+                   @if($product->promo_price!=0)
+                    <div class="product-badge text-danger">Giảm giá: {{(round(100*($product->unit_price-$product->promo_price)/$product->unit_price)) }}%</div>
+                    @elseif($product->status==2)
+                     <div class="product-badge text-danger">Mới</div>
+                     @endif
                   <div class="rating-stars">
                     @php
                       $vote=$product->vote;
@@ -24,11 +28,16 @@
                   <a class="product-thumb" href="{{ route('detailproduct',['alias'=>$product->alias,'id'=>$product->id]) }}"><img src="public/uploads/product/{{$product->image_product[0]['image']}}" alt="Product"></a>
                   <h3 class="product-title"><a href="{{ route('detailproduct',['alias'=>$product->alias,'id'=>$product->id]) }}">{{$product->product_name}}</a></h3>
                   <h4 class="product-price">
-                    {{$product->promo_price!=0?"<del>".number_format($product->unit_price)." VNĐ</del>".number_format($product->promo_price)." VNĐ":number_format($product->unit_price)." VNĐ"}}
+                     @if($product->promo_price!=0) 
+                    <del>{{number_format($product->unit_price)}} VNĐ</del> 
+                    {{number_format($product->promo_price)." VNĐ"}}
+                    @else
+                    {{number_format($product->unit_price)." VNĐ"}}
+                    @endif
                   </h4>
                   <div class="product-buttons">
                     <button class="btn btn-outline-secondary btn-sm btn-wishlist btn-quickview clearfix-sm-hidden" data-id="{{$product->id}}" data-toggle="tooltip" title="Xem nhanh"><i class="icon-search"></i></button>
-                    <button class="  btn btn-outline-primary btn-sm" data-toast data-toast-type="success" data-toast-position="topRight" data-toast-icon="icon-circle-check" data-toast-title="{{$product->product_name}}" data-toast-message="đã thêm vào giỏ hàng!" data-id="{{$product->id }}">Thêm vào giỏ hàng</button>
+                   {{--  <button class="  btn btn-outline-primary btn-sm" data-toast data-toast-type="success" data-toast-position="topRight" data-toast-icon="icon-circle-check" data-toast-title="{{$product->product_name}}" data-toast-message="đã thêm vào giỏ hàng!" data-id="{{$product->id }}">Thêm vào giỏ hàng</button> --}}
                   </div>
                 </div>
               </div>

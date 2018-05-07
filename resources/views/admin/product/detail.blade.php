@@ -124,7 +124,13 @@
                                                 <div class=" col-sm-4">Trạng thái:
                                                 </div>
                                                 <div class="col-sm-7">
-                                                    <strong >{{$pd->status==1?'online':'offline'}}</strong>
+                                                  @if ($pd->status==1)
+                                                    <strong>online</strong>
+                                                  @elseif($pd->status==2)
+                                                    <strong >new</strong>
+                                                    @else
+                                                    <strong>offline</strong>
+                                                    @endif
                                                 </div>
                                             </div>
                                         </form>
@@ -154,10 +160,18 @@
                                             </div>
                                             <div class="form-group">
                                                 <div class=" col-sm-3">
-                                                    Số lượng:
+                                                    Số lượng nhập:
                                                 </div>
                                                 <div class="col-sm-8">
                                                     <strong>{{$pd->amount}}</strong>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <div class=" col-sm-3">
+                                                    Số lượng đã bán:
+                                                </div>
+                                                <div class="col-sm-8">
+                                                    <strong>{{$db}}</strong> 
                                                 </div>
                                             </div>
                                             <div class="form-group">
@@ -195,7 +209,8 @@
                                                 <div class=" col-sm-3">Mô tả:
                                                 </div>
                                                 <div class="col-sm-8">
-                                                    <strong>{{$pd->describe}}</strong>
+
+                                                    <strong> <?php echo  html_entity_decode($pd->describe,ENT_QUOTES) ?> </strong>
                                                 </div>
                                             </div>
                                         </form>

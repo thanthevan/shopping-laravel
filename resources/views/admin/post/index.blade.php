@@ -82,13 +82,13 @@
    <div class="m-b-20 clearfix">
       <div class="page-title pull-left">
          <h3 class="pull-left"><strong>Danh sách bài viết</strong></h3>
-          @if (count($errors) > 0)
+          {{-- @if (count($errors) > 0)
             {{ "<script> alert(".$errors->first('file').")</script>"}}
-          @endif
+          @endif --}}
       </div>
-      <div class="pull-right">
+      {{-- <div class="pull-right">
                 <a href="javascript:void(0)" onclick="return confirm('Bạn muốn xóa những bài viết đã chọn ?');" class="btn btn-danger m-t-10"><i class="fa fa-times-circle p-r-10"></i>Xóa bài viết</a>
-      </div>
+      </div> --}}
       <div class="pull-right" style="margin-right: 5px;">
          <a data-toggle="modal" href='{{ route('post.create') }}' class="btn btn-success m-t-10"><i class="fa fa-plus p-r-10"></i>Thêm mới</a>
       </div>
@@ -104,31 +104,31 @@
                      <div class="head_table">
                         <div class="row">
                          <div  class="col-md-2">
-                            <select class="form-control" title="Chọn danh mục" name="category_pt" required>
+                            <select class="form-control" title="Chọn danh mục" name="category_pt"  id="filter-post-cate" required>
                               <option selected disabled>Lọc danh mục</option>
                                @foreach ($categorypost as $cp)
                                   <option value="{{$cp->id}}">{{$cp->name}}</option>
                                @endforeach
                            </select>
                          </div>
-                         <div class="col-md-2">
+                        {{--  <div class="col-md-2">
                            <div id="posts-table_filter" class="dataTables_filter"><label><input type="search" class="form-control" aria-controls="posts-table" placeholder="Tìm kiếm bài viết..."></label>
                            </div>
-                        </div>
+                        </div> --}}
                         </div>
                     </div>
 
                      <table id="pts-table" class="table table-tools table-hover ">
                         <thead>
                            <tr>
-                              <th style="min-width:50px">
+                             {{--  <th style="min-width:50px">
                                  <div class="checkbox" style="min-height: 0px;padding-left: 0px;margin-top: 0px;margin-bottom: 0px;">
                                     <label>
                                      <input type="checkbox" class="check_all">
                                     <span class="cr"><i class="cr-icon glyphicon glyphicon-ok"></i></span>
                                     </label>
                                  </div>
-                              </th>
+                              </th> --}}
                               <th style="min-width:70px"><strong>ID</strong>
                               <th><strong>Tiêu đề</strong>
                               </th>
@@ -149,14 +149,14 @@
                            @isset ($post)
                            @foreach ($post as $pt)
                            <tr>
-                              <td>
+                              {{-- <td>
                                   <div class="checkbox" style="min-height: 0px;padding-left: 0px;margin-top: 0px;margin-bottom: 0px;">
                                     <label>
                                      <input type="checkbox" value="{{$pt->id}}">
                                     <span class="cr"><i class="cr-icon glyphicon glyphicon-ok"></i></span>
                                     </label>
                                  </div>
-                              </td>
+                              </td> --}}
                               <td>{{$pt->id}}</td>
                               <td style="width: 30%">{{$pt->title}}</td>
                               <td>{{category_name_post($pt->category_post)}}</td>
@@ -172,11 +172,12 @@
                                  @endif
                               </td>
                               <td class="text-center " >
-                                 <button  class="edit btn btn-sm btn-info info" data-id="{{$pt->id}}"><i class="fa fa-eye"></i> Chi tiết</button>
-                                  <form style="display: inline-block;" action="{{-- {{route('post.destroy',['id'=>$pt->id])}} --}}" method="post">
+                                 <a  class="edit btn btn-sm btn-info info" href="{{ route('post.show',['id'=>$pt->id]) }}" ><i class="fa fa-eye"></i></a>
+                                     <a  class="edit btn btn-sm btn-warning info" href="{{ route('post.edit',['id'=>$pt->id]) }}" ><i class="fa fa-pencil"></i></a>
+                                  <form style="display: inline-block;" action="{{route('post.destroy',['id'=>$pt->id])}}" method="post">
                                        {{csrf_field()}}
                                        {{method_field('DELETE')}}
-                                        <button type="submit" title="Xóa" onclick="return confirm('Xóa bài viết này ?'); " class="delete btn btn-sm btn-danger"><i class="fa fa-times-circle"></i> Xóa</button></form>
+                                        <button type="submit" title="Xóa" onclick="return confirm('Xóa bài viết này ?'); " class="delete btn btn-sm btn-danger"><i class="fa fa-times-circle"></i></button></form>
                               </td>
                            </tr>
                            @endforeach
@@ -200,7 +201,7 @@
 @endsection 
 @section('script-upload')
 
-<script type="text/javascript">
+{{-- <script type="text/javascript">
    $(function() {
       $('input:checkbox').on('click', function () {
        if ($(this).prop('checked') ==  true){
@@ -222,5 +223,16 @@
     });
    });
 
+</script> --}}
+
+<script type="text/javascript">
+  $(()=>{
+      
+   $('#filter-post-cate').on('change', function(event) {
+     event.preventDefault();
+       id=   $(this).val();
+       window.location.assign('cp_admin/loc-bai-viet-theo-danh-muc/'+id);
+   });
+  });
 </script>
 @endsection

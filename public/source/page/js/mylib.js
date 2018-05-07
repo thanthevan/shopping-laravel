@@ -18,14 +18,16 @@
     });
    },
    quickview:function quickview() {
+
     $('.btn-quickview').each(function() {
+      
       $(this).on('click', function(event) {
         event.preventDefault();
         var id_product = $(this).attr('data-id');
         var url = $('#router').val();
         if (id_product.length > 0) {
            $('#quickviewproduct').modal('show');
-         $('.atom-spinner').fadeOut(2000,function() {
+         $('.atom-spinner').fadeOut(1000,function() {
                $('.qv').html('');
           $.ajax({
             headers: {
@@ -39,6 +41,7 @@
           })
           .done(function(res) {
             $('.qv').html(res);
+            mylib.addtocartajax();
 
           });
          });
@@ -149,10 +152,12 @@ addtocartajax:function addtocartajax() {
  mylib.d($(".countdown")), $("[data-toast]").on("click", function() { 
 
   if($('#size').length!=0 && $('#color').length!=0 && $('#quantity').length!=0){
-
+   
+   
     color = $('#color').val();
     size  = $('#size').val();
     qty  = $('#quantity').val();
+  
   }else
   {
     color = null;
@@ -193,10 +198,32 @@ addtocartajax:function addtocartajax() {
     data: {id: produc_id,color: color,size: size, qty: qty },
   })
   .done(function(res) {
-    mylib.show(res,$('.cart-ajax'));
-    mylib.carthover();
-    mylib.removecartajax();
-    iziToast.show(h);
+    
+    // mylib.carthover();
+    // mylib.removecartajax();
+    if(res.notify=='notadd')
+    {
+       h = {
+      class: "iziToast-danger",
+      title: f || "Title",
+      message: "Số lượng không đủ !",
+      animateInside: !1,
+      position: "topRight",
+      progressBar: !1,
+      icon: "icon-ban",
+      timeout: 2000,
+      transitionIn: "fadeInLeft",
+      transitionOut: "fadeOut",
+      transitionInMobile: "fadeIn",
+      transitionOutMobile: "fadeOut"
+    };
+       iziToast.show(h);
+    }else{
+      iziToast.show(h);
+      mylib.show(res,$('.cart-ajax'));
+       
+    }
+   
 
   });
 });
@@ -207,6 +234,7 @@ updatecartajax:function updatecartajax() {
   $('.total-quanlity').each(function() {
 
     $(this).on('change',function(){
+      id = $(this).attr('data-id');
       rowid = $(this).attr('data-rowid');
       qty = $(this).val();
       $.ajaxSetup({
@@ -214,9 +242,17 @@ updatecartajax:function updatecartajax() {
           'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
         }
       });  
-      $.post('cart-ajax-update', {rowid: rowid, qty:qty} , function() {
-        
-          location.reload();
+      $.post('cart-ajax-update', {rowid: rowid,id:id, qty:qty} , function(res) {
+          if(res.notify==false){
+            alert('Không đủ sản phẩm');
+            setTimeout( ()=>{
+               location.reload();
+            },500);
+
+          }else{
+            location.reload();
+          }
+          
       });
 
     });
@@ -278,6 +314,8 @@ fill: function filldata() {
             }
           });});
            $('.fill-product').html(res);
+            mylib.quickview(); 
+            mylib.addtocartajax();
           });
         }
         else
@@ -295,6 +333,8 @@ fill: function filldata() {
             }
           });});
              $('.fill-product').html(res);
+              mylib.quickview(); 
+            mylib.addtocartajax();
           });
         }
           
@@ -322,10 +362,85 @@ paginateajax: function paginate() {
             }
           });});
            $('.fill-product').html(res);
+
+
           });
+            mylib.quickview(); 
+            mylib.addtocartajax();
+     
 });
-}
+},
+if:function iff(){ 
+  $('.if').each(function(index, el) {
+    $(this).on('click', function(event) {
+      event.preventDefault();
+       id = $(this).attr('data-id');
+       $.ajaxSetup({
+        headers: {
+          'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+      });
+
+       $.post('viewod', {id: id }, function(data) {
+
+         $('.iff').html(data);
+         $('#modal-detail').modal('show');
+       });
+
+    });
+      
+
+  });
+ },findproduct: function findproduct() {
+     $('#site_search').on('keyup',function(event) {
+            $.ajaxSetup({
+                    headers: {
+                                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                             }
+                });
+             keyword = $(this).val();
+             if( keyword ==='')
+             {
+                 keyword='-';
+             }
+               $.post('tim-kiem', {keyword: keyword}, function(data) {
+                 $('.result_search').html(data);
+                
+             });  
+            
+        });
+    }
 };
 window.mylib = cart;
 
 })(this.jQuery);
+
+$(function() {
+      mylib.paginateajax();
+      mylib.if();
+      mylib.quickview(); 
+      mylib.carthover();
+      mylib.updatecartajax();
+       // mylib.addtocartajax();
+      mylib.removecart();
+      mylib.account();
+      mylib.fill();
+      mylib.findproduct();
+     
+       $('.market-button').on('click', function(event) {
+         event.preventDefault();
+         alert('Comming soon!!!');
+       });
+
+   
+    $(document).click(function(event) {
+
+  
+      if (!$(event.target).closest("#cart-mini-title").length) {
+       $('#cart-mini-content>.toolbar-dropdown').css('display', 'none');
+        }
+     });
+
+   });
+
+

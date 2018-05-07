@@ -9,7 +9,12 @@
               
           
           <div class="col-md-6">
-            <div class="product-gallery"><span class="product-badge text-danger">30% Off</span>
+            <div class="product-gallery">
+                @if($dt['promo_price']!=0)
+                    <div class="product-badge text-danger">Giảm giá: {{(round(100*($dt['unit_price']-$dt['promo_price'])/$dt['unit_price'])) }}%</div>
+                    @elseif($dt['status']==2)
+                     <div class="product-badge text-danger">Mới</div>
+                     @endif
               <div>
                 <div><img id="showimg" src="public/uploads/product/{{$dt['image_product'][0]['image']}}" width="280px" style="margin-left:90px;"></div>
               </div>
@@ -28,9 +33,17 @@
                  <i class="icon-star filled"></i> 
                 @endfor
               </div><span class="text-muted align-middle">&nbsp;&nbsp;| lượt xem({{$dt['view_count']}})</span>
-            <h2 class="padding-top-1x text-normal">{{$dt['product_name']}}</h2><span class="h2 d-block">
-              {{ $dt['promo_price']!=0?"<del class='text-muted text-normal'>".number_format($dt['unit_price'])." VNĐ</del>".number_format($dt['promo_price'])." VNĐ": number_format($dt['unit_price'])." VNĐ" }}</span>
-            <p>{{$dt['describe']}}</p>
+            <h2 class="padding-top-1x text-normal" style="color: #0da9ef;">{{$dt['product_name']}}</h2><span class="h2 d-block">
+              @if($dt['promo_price']!=0) 
+                    <del>{{number_format($dt['unit_price'])}} VNĐ</del> 
+                    <span style="color: red">{{number_format($dt['promo_price'])." VNĐ"}}</span>
+                    @else
+                    {{number_format($dt['unit_price'])." VNĐ"}}
+                    @endif</span>
+             
+            <p>@php
+                                          echo  html_entity_decode($dt['describe'],ENT_QUOTES);
+                                       @endphp</p>
             <div class="row margin-top-1x">
               <div class="col-sm-4">
                 <div class="form-group">
@@ -55,7 +68,7 @@
               <div class="col-sm-3">
                 <div class="form-group">
                   <label for="quantity">Số lượng</label>
-                  <select class="form-control" id="quantity">
+                  <select class="form-control" id="quantity" name="">
                     <option>1</option>
                     <option>2</option>
                     <option>3</option>
@@ -65,7 +78,7 @@
                 </div>
               </div>
             </div>
-            <div class="padding-bottom-1x mb-2"><span class="text-medium">Danh mục:&nbsp;</span><a class="navi-link" href="#">Men’s shoes,</a><a class="navi-link" href="#"> Snickers,</a><a class="navi-link" href="#"> Sport shoes</a></div>
+            <div class="padding-bottom-1x mb-2"><span class="text-medium">Danh mục:&nbsp;</span><a class="navi-link" href="#">{{category_name_by_pi($dt['id'])}}</a></div>
             <hr class="mb-3">
             <div class="d-flex flex-wrap justify-content-between">
               <div class="entry-share mt-2 mb-2"><span class="text-muted">Share:</span>
@@ -83,8 +96,9 @@
      </div>
  <script type="text/javascript">
    $(function(){
-    mylib.addtocartajax();
+    
     mylib.choiceimg();
+  // mylib.addtocartajax();
 
     });
  </script>

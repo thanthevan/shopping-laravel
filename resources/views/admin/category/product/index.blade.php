@@ -110,7 +110,7 @@
                                             <label class="col-sm-3 control-label">Danh mục cha <span class="asterisk">*</span>
                                             </label>
                                             <div class="col-sm-9">
-                                                <select class="form-control" id="category" name="parent_id">
+                                                <select class="form-control" id="category" required name="parent_id">
                                                    
                                                 </select>
                                                

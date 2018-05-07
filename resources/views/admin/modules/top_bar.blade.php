@@ -2,7 +2,7 @@
     <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
         <div class="container-fluid">
             <div class="navbar-header">
-                <a class="navbar-brand" {{-- style="background: url('public/source/page/img/logo/logo.png');" --}} href="{{ route('dashboard') }}"></a>
+                <a class="navbar-brand" href="{{ route('dashboard') }}"><span style="color:#0090D9">Uni</span><span style=" font-size: 20px">shop</span></a> 
             </div>
             <div class="navbar-center">Trang quản trị</div>
             <div class="navbar-collapse collapse">
@@ -20,15 +20,12 @@
                         </a>
                         <ul class="dropdown-menu">
                             <li>
-                                <a href="profil.html">
+                                <a href="#" id="detailemployee" data-id="{{Auth::guard('admin')->user()->id}}">
                                     <i class="glyph-icon flaticon-account"></i> Thông tin
                                 </a>
                             </li>
-                            <li>
-                                <a href="profil_edit.html">
-                                    <i class="glyph-icon flaticon-settings21"></i> Thiết lập
-                                </a>
-                            </li>
+                           
+                            
                             <li class="dropdown-footer clearfix" style="text-align:center;">
                                 <a href="{{ route('logout-admin') }}" title="Đăng xuất">
                                     <i class="fa fa-power-off"></i>

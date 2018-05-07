@@ -702,8 +702,11 @@ a,a:focus,a:hover,a:active{
     z-index:90
 }
 .navbar-inverse .navbar-brand{
-    background:url(../img/logo.png) no-repeat center;
+   
     width:120px
+}
+.navbar-brand{
+    font-size: 25px
 }
 .navbar-center{
     color:#bebebe;
